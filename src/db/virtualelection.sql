@@ -44,7 +44,9 @@ CREATE TABLE `election` (
 CREATE TABLE `parties` (
   `party_id` int(11) NOT NULL,
   `party_name` varchar(100) NOT NULL,
-  `candidate` varchar(100) NOT NULL
+  `candidate` varchar(100) NOT NULL,
+  `idproof` varchar(20) NOT NULL,
+  `idno` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -78,7 +80,8 @@ ALTER TABLE `election`
 --
 ALTER TABLE `parties`
   ADD PRIMARY KEY (`party_id`),
-  ADD UNIQUE KEY `party_name` (`party_name`);
+  ADD UNIQUE KEY `party_name` (`party_name`),
+  ADD UNIQUE KEY `idproof` (`idproof`,`idno`);
 
 --
 -- Indexes for table `voter`
