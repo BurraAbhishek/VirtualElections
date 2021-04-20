@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Virtual Election</title>
+        <link rel="stylesheet" href="css/virtualelection.css">
+        <style>
+            a {
+                text-decoration: none;
+                font-size: 1em;
+                color: #FFFFFF;
+            } p1 {
+                padding:1% 1%;
+            }
+            .flexbar {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                padding: 0.5% 0.5%;
+                flex-grow: 1;
+            }
+            @media only screen and (max-width: 600px) {
+                .flexbar {
+                    flex-direction:column;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="appbar">Virtual Election Portal</header>
+        <h2>
+            <div class="flexbar">
+                <a href="main.html" style="display:flex;flex-grow:1;"> Home </a>
+                <a href="registration_voter/registration.html" target="_blank" style="display:flex;flex-grow:1;"> Voter Registration </a>
+                <a href="registration_party/registration.html" target="_blank" style="display:flex;flex-grow:1;"> Political Party Registration </a>
+                <a href="election_time/voter_login.html" target="_blank" style="display:flex;flex-grow:1;"> Vote </a>
+                <a href="vote_counting/results.php" target="_blank" style="display:flex;flex-grow:1;"> Exit Polls </a>
+            </div>
+        </h2>
+        <div id="mainbody" class="mainbody">
+            <h2>About this tool</h2>
+            <div style="padding:0.5% 0.5%;">
+                <p1>Virtual Elections can be conducted officially by the Election Commission at times when an infectious disease spreads easily among the population, causing epidemics and pandemics. During public health crisis like SARS, Ebola, COVID-19 etc. stay-at-home orders are implemented to protect the general public. This tool helps you to vote in the elections from the comforts of your home without having to take the risk of visiting the election booth, crowding and spreading any infectious disease.</p1>
+            </div>
+            <h2>Is this official?</h2>
+            <div style="padding:0.5% 0.5%;">
+                <p1>Yes, you can use this tool to conduct elections. Any national-level, state-level or district-level elections are conducted by their respective Election Commissions. All other elections can be officially conducted by anyone.</p1>
+            </div>
+            <h2>What about the data which is sent?</h2>
+            <div style="padding:0.5% 0.5%;">
+                <p1>Please contact the agency conducting the elections.</p1>
+            </div>
+        </div>
+    </body>
+</html>
