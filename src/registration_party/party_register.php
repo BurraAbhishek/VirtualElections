@@ -11,8 +11,8 @@ $pname = $_POST['pname'];
 $cname = $_POST['cname'];
 $citype = $_POST['citype'];
 $cidno = $_POST['cidno'];
-$sql = $conn->prepare("INSERT INTO parties (party_name, candidate) values
-(:pname,:cname)");
+$sql = $conn->prepare("INSERT INTO parties (party_name, candidate, idno, idproof) values
+(:pname,:cname,:cidno, :citype)");
 $sql->bindParam(':pname',$pname, PDO::PARAM_STR, 100);
 $sql->bindParam(':cname',$cname, PDO::PARAM_STR, 100);
 $sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
