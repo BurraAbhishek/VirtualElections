@@ -1,10 +1,5 @@
 # VirtualElections
-A free, open-source voting platform to conduct elections remotely
-
-## NOTE:
-The source code requires reformatting and code cleanup. Pull requests are always welcome. To contribute, do either of the following:
-- Fork this repository and open a pull request.
-- Create an issue, and type the required code changes.
+A free, open-source voting platform to conduct elections remotely.
 
 ## Tools used:
 ### Frontend:
