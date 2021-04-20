@@ -29,16 +29,16 @@ $password = "";
 try {
 $conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);	
-$sth = $conn->prepare("SELECT party_id FROM election");
-$sth->execute();
-$userid = $sth->fetchAll();
+$sq11 = $conn->prepare("SELECT party_id FROM election");
+$sq11->execute();
+$userid = $sq11->fetchAll();
 $d = [];
 foreach($userid as $u){
 array_push($d,$u['party_id']);
 }
-$sql = $conn->prepare("SELECT party_name FROM parties ORDER BY party_id");
-$sql->execute();
-$party = $sql->fetchAll();
+$sql2 = $conn->prepare("SELECT party_name FROM parties ORDER BY party_id");
+$sql2->execute();
+$party = $sql2->fetchAll();
 $g = ["None of the above"];
 foreach($party as $p){
 array_push($g,$p['party_name']);

@@ -11,11 +11,11 @@ function calculate_age(dob) {
 }
 
 // Verify that the candidate has attained the minimum voting age.
-function validateForm(){
+function validateForm() {
     var d = new Date(document.getElementById("cdob").value);
     var c = calculate_age(d);
-    if(c < min_age) {
-        alert("You are only "+c+" years old. You should be at least "+min_age+" years old to be eligible to vote");
+    if (c < min_age) {
+        alert("You are only " + c + " years old. You should be at least " + min_age + " years old to be eligible to vote");
         return false;
     }
 }

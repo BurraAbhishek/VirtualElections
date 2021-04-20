@@ -8,7 +8,7 @@ $conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $pas
 $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 if(isset($_POST['save'])) {
 if(($_POST['cpd1'])!=($_POST['cpd2'])) {
-echo '<script>alert("Confirm your password properly");window.location.href="srg.html";</script>';
+echo '<script>alert("Confirm your password properly");window.location.href="registration.html";</script>';
 } else {
 $cname = $_POST['cname'];
 $cdob = $_POST['cdob'];
@@ -25,8 +25,8 @@ $sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
 $sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 100);
 $sql->bindParam(':cgender', $cgender, PDO::PARAM_STR, 6);
 $sql->bindParam(':cpd', $cpd1);
-if($sql->execute()) {echo '<script>window.location.href="srgss.html";</script>';} 
-else {echo '<script>alert("Enter the details properly");window.location.href="srg.html";</script>';}
+if($sql->execute()) {echo '<script>window.location.href="registration_success.html";</script>';} 
+else {echo '<script>alert("Enter the details properly");window.location.href="registration.html";</script>';}
 }}
 }
 

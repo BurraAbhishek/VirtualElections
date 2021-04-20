@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../registration_voter/virtualelection.css"><title>Virtual Elections</title></head>
-<body><header class="appbar">Register for voting</header>
-<div id="mainbody" class="mainbody"><form action="actionpage3.php" method="post">
-<p1><table style="width: 100%;">
-<tr><td style="text-align: right;">Voter's Name: </td><td><input type="text" name="cname" id="cname" required></td></tr>
-<tr><td style="text-align: right;"><abbr title="Type of ID Proof, default is passport" style="text-decoration: none;">Identification type: <abbr></td><td><input type="text" name="citype" id="citype" value="Passport" required></td></tr>
-<tr><td style="text-align: right;">Passport / ID Number: </td><td><input type="text" name="cidno" id="cidno" required></td></tr>
-<tr><td style="text-align: right;">Enter Password: </td><td><input type="password" name="cpd1" id="cpd1" required></td></tr>
-<tr><td style="text-align: right;">Please do not fill this field. </td><td><input type="password" name="cpd3" id="cpd3"></td></tr>
-<tr><td colspan=2 style="text-align: center;"><input class="submitbtn" type="submit" value="SUBMIT" name="save"></td></tr></table></p1>
-</form></div></body></html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../registration_voter/virtualelection.css">
+    <title>Virtual Elections</title>
+</head>
+
+<body>
+    <header class="appbar">Register for voting</header>
+    <div id="mainbody" class="mainbody">
+        <form action="actionpage3.php" method="post">
+            <p1>
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="text-align: right;">Voter's Name: </td>
+                        <td><input type="text" name="cname" id="cname" required></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;"><abbr title="Type of ID Proof, default is passport"
+                                style="text-decoration: none;">Identification type: <abbr></td>
+                        <td><input type="text" name="citype" id="citype" value="Passport" required></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">Passport / ID Number: </td>
+                        <td><input type="text" name="cidno" id="cidno" required></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">Enter Password: </td>
+                        <td><input type="password" name="cpd1" id="cpd1" required></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">Please do not fill this field. </td>
+                        <td><input type="password" name="cpd3" id="cpd3"></td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 style="text-align: center;"><input class="submitbtn" type="submit" value="SUBMIT"
+                                name="save"></td>
+                    </tr>
+                </table>
+            </p1>
+        </form>
+    </div>
+</body>
+
+</html>

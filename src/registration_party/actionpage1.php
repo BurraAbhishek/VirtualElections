@@ -13,8 +13,8 @@ $sql = $conn->prepare("INSERT INTO parties (party_name, candidate) values
 (:pname,:cname)");
 $sql->bindParam(':pname',$pname);
 $sql->bindParam(':cname',$cname);
-if($sql->execute()) {echo '<script>window.location.href="srgss.html";</script>';} 
-else {echo '<script>alert("Enter the details properly");window.location.href="srg.html";</script>';}
+if($sql->execute()) {echo '<script>window.location.href="registration_success.html";</script>';} 
+else {echo '<script>alert("Enter the details properly");window.location.href="registration.html";</script>';}
 }}
 
 catch(PDOException $e)
