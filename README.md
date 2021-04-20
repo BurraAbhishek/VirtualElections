@@ -12,3 +12,6 @@ A free, open-source voting platform to conduct elections remotely.
 
 ## Trademarks
 This repository does NOT contain any trademarks.
+
+## CAUTION!
+This release is intended for local development and use only. New security features will be added in the upcoming releases.
