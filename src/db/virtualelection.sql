@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 20, 2021 at 05:38 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Host: localhost
+-- Generation Time: Apr 21, 2021 at 06:52 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -23,6 +22,21 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `virtualelection` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `virtualelection`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` varchar(100) NOT NULL DEFAULT 'admin',
+  `voterregistrations` int(11) NOT NULL DEFAULT 0,
+  `partyregistrations` int(11) NOT NULL DEFAULT 0,
+  `votecasting` int(11) NOT NULL DEFAULT 0,
+  `results` int(11) NOT NULL DEFAULT 0,
+  `password` varchar(256) NOT NULL DEFAULT '$2y$10$UFBXxuxIPeurlg0dH6.Vaub9itfVV9QNMYR9xY8sLERCk5t0mppbO'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -68,6 +82,12 @@ CREATE TABLE `voter` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `election`
