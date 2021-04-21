@@ -15,4 +15,4 @@ Before you create a new issue, please search in [open issues](https://github.com
 The recommended method: Fork this repository and send a pull request.
 
 In addition to that, there are certain rules, especially while contributing PHP code:
-- Your PHP code should NOT be vulnerable to SQL Injection attacks. If you find any PHP code in this repository which is vulnerable to SQL Injection attacks, please open the corresponding issue ASAP.
+- Your PHP code should NOT be vulnerable to SQL Injection attacks. If you find any PHP code in this repository which is vulnerable to SQL Injection attacks, please open the corresponding issue as a bug report ASAP.
