@@ -10,8 +10,22 @@
 
 <body>
     <header class="appbar">Candidate Registration</header>
-    <div id="mainbody" class="mainbody">
-        <form action="#" method="post">
+
+    <?php
+error_reporting(0);
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+try {
+$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
+$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$sql1 = $conn->prepare("SELECT partyregistrations FROM admin WHERE admin_id = 'admin'");
+$sql1->execute();
+$status = $sql1->fetchAll();
+$html = '<div id="mainbody" class="mainbody">
+        <form action="party_register.php" method="post">
             <p1>
                 <table style="width: 100%;">
                     <tr>
@@ -38,37 +52,21 @@
                 </table>
             </p1>
         </form>
-    </div>
+    </div>';
 
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+if($status[0]['partyregistrations'] != 0) {
+$html = preg_replace('#<div id="mainbody">(.*?)</div>#', '', $html);
+echo '<h2>This section is closed</h2>';
+} else {
+echo $html;
+}
 
-try {
-$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-if(isset($_POST['save'])){
-$pname = $_POST['pname'];
-$cname = $_POST['cname'];
-$citype = $_POST['citype'];
-$cidno = $_POST['cidno'];
-$sql = $conn->prepare("INSERT INTO parties (party_name, candidate, idno, idproof) values
-(:pname,:cname,:cidno, :citype)");
-$sql->bindParam(':pname',$pname, PDO::PARAM_STR, 100);
-$sql->bindParam(':cname',$cname, PDO::PARAM_STR, 100);
-$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
-$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
-if($sql->execute()) {echo '<script>window.location.href="registration_success.html";</script>';} 
-else {echo '<script>alert("Enter the details properly");window.location.reload();</script>';}
-}}
+}
 
 catch(PDOException $e)
 {
 	echo $e->getMessage();
 }
-
-$conn = null;
 ?>
 
 </body>
