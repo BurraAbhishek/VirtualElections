@@ -26,7 +26,7 @@ $sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
 $sql->bindParam(':cgender', $cgender, PDO::PARAM_STR, 6);
 $sql->bindParam(':cpd', $cpd1);
 if($sql->execute()) {echo '<script>window.location.href="registration_success.html";</script>';} 
-else {echo '<script>alert("Enter the details properly");window.location.href="registration.html";</script>';}
+else {echo '<script>alert("Enter the details properly");window.location.href="registration.php";</script>';}
 }}
 }
 
