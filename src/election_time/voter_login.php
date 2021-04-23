@@ -20,7 +20,7 @@ $password = "";
     
 try {
 $conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 $sql1 = $conn->prepare("SELECT votecasting FROM admin WHERE admin_id = 'admin'");
 $sql1->execute();
 $status = $sql1->fetchAll();
