@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <header class="appbar">Candidate Registration</header>
+    <header class="appbar">Contestant Registration</header>
 
     <?php
 error_reporting(0);
@@ -20,7 +20,7 @@ $password = "";
 
 try {
 $conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 $sql1 = $conn->prepare("SELECT partyregistrations FROM admin WHERE admin_id = 'admin'");
 $sql1->execute();
 $status = $sql1->fetchAll();
