@@ -5,7 +5,7 @@ $password = "";
 
 try {
 $conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 if(isset($_POST['save'])) {
 if(($_POST['cpd1'])!=($_POST['cpd2'])) {
 echo '<script>alert("Confirm your password properly");window.location.href="registration.html";</script>';
@@ -26,7 +26,7 @@ $sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
 $sql->bindParam(':cgender', $cgender, PDO::PARAM_STR, 6);
 $sql->bindParam(':cpd', $cpd1);
 if($sql->execute()) {echo '<script>window.location.href="registration_success.html";</script>';} 
-else {echo '<script>alert("Enter the details properly");window.location.href="registration.php";</script>';}
+else {echo '<script>alert("CredentialsError: Registration Failed! Please try again.");window.location.href="registration.php";</script>';}
 }}
 }
 
