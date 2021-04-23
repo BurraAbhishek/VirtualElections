@@ -10,7 +10,7 @@
 
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);	
+		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);	
 		$voter_id = $_SESSION["voterid"];
 		$sql = $conn->prepare('SELECT * FROM election WHERE voter_id = :voter_id');
 		$sql->execute(['voter_id' => $voter_id]);
