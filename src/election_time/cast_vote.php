@@ -10,7 +10,7 @@
 
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);	
+		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);	
 		$voter_id = $_SESSION["voterid"];
 		$voted_for = $_POST["myinput"];
 		$sql = $conn->prepare('SELECT party_id FROM parties WHERE party_name = :voted_for');
@@ -30,6 +30,7 @@
 			echo '<script>if(sessionStorage.parties){sessionStorage.removeItem("parties");}</script>';
 			echo '<script>window.location.replace("votecomplete.html");</script>';
 		} else {
+			echo '<script>alert("VoteError: This vote was not recognized.");</script>';
 			echo '<script>window.location.replace("election.html");</script>';
 		}
 	}
