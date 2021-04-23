@@ -28,17 +28,21 @@ $password = "";
 
 try {
 $conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);	
-$sq11 = $conn->prepare("SELECT party_id FROM election");
-$sq11->execute();
-$userid = $sq11->fetchAll();
+$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
+$sql1 = $conn->prepare("SELECT results FROM admin WHERE admin_id = 'admin'");
+$sql1->execute();
+$status = $sql1->fetchAll();
+if($status[0]['results'] == 0) {
+$sql2 = $conn->prepare("SELECT party_id FROM election");
+$sql2->execute();
+$userid = $sql2->fetchAll();
 $d = [];
 foreach($userid as $u){
 array_push($d,$u['party_id']);
 }
-$sql2 = $conn->prepare("SELECT party_name FROM parties ORDER BY party_id");
-$sql2->execute();
-$party = $sql2->fetchAll();
+$sql3 = $conn->prepare("SELECT party_name FROM parties ORDER BY party_id");
+$sql3->execute();
+$party = $sql3->fetchAll();
 $g = ["None of the above"];
 foreach($party as $p){
 array_push($g,$p['party_name']);
@@ -51,6 +55,9 @@ echo ');</script>';
 echo '<script>var g=JSON.stringify(';
 echo "$h";
 echo ');</script>';
+} elseif($status[0]['results'] == 1) {
+echo '<h1>Results are not published.</h1>';
+}
 }
 
 catch(PDOException $e)
