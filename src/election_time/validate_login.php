@@ -10,7 +10,7 @@
 
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);	
+		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);	
 		if(isset($_POST['save'])) {
 			$pwd = $_POST['cpd1'];
 			$citype = $_POST['citype'];
@@ -30,7 +30,7 @@
 				$_SESSION["votername"] = $u['voter_name'];
 				echo '<script>window.location.href="check_if_already_voted.php";</script>';
 			} else {
-				echo '<script>alert("ERROR: Voter does not exist.");window.location.href="voter_login.html";</script>';
+				echo '<script>alert("VerificationError: Voter is not registered.");window.location.href="voter_login.html";</script>';
 			}
 		}
 	}
