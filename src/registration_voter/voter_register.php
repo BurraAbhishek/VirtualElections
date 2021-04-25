@@ -8,7 +8,7 @@ $conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $pas
 $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 if(isset($_POST['save'])) {
 if(($_POST['cpd1'])!=($_POST['cpd2'])) {
-echo '<script>alert("Confirm your password properly");window.location.href="registration.html";</script>';
+echo '<script>alert("Confirm your password properly");window.location.href="registration.php";</script>';
 } else {
 $cname = $_POST['cname'];
 $cdob = $_POST['cdob'];
