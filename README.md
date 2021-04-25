@@ -12,6 +12,3 @@ A free, open-source voting platform to conduct elections remotely.
 
 ## Development Environment
 Please check the [wiki](https://github.com/burraabhishek/virtualelections/wiki) of this repository to get started.
-
-## CAUTION!
-This release is intended for local development and use only. New security features will be added in the upcoming releases.
