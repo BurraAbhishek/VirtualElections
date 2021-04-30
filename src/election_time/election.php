@@ -64,8 +64,9 @@
 
             function create_td_btn(a, b, s) {
                 var x = document.createElement("TD");
-                var d = document.createElement("BUTTON");
-                d.innerHTML = "Vote for " + s[a][0];
+                var d = document.createElement("INPUT");
+		d.setAttribute("type", "button");
+                d.value = "Vote for " + (s[a][0]).toString();
                 d.onclick = function () { voted = s[a][0]; sessionStorage.setItem("voted", s[a][0]); window.location.href = ("electionpost.php"); };
                 x.appendChild(d);
                 document.getElementById(b).appendChild(x);
