@@ -1,11 +1,14 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+error_reporting(0);
 
+require '../db/dbconfig.php';
+require '../db/tablesconfig.php';
+
+$tables = new Table();
+$voter = $tables->getVoterList();
+$dbconn = new Connection();
+$conn = $dbconn->openConnection();
 try {
-$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 if(isset($_POST['save'])) {
 if(($_POST['cpd1'])!=($_POST['cpd2'])) {
 echo '<script>alert("Confirm your password properly");window.location.href="registration.php";</script>';
@@ -17,7 +20,7 @@ $cidno = $_POST['cidno'];
 $cgender = $_POST['cgender'];
 $cpd = $_POST['cpd1'];
 $cpd1 = password_hash($cpd, PASSWORD_DEFAULT);
-$sql = $conn->prepare("INSERT INTO voter (voter_name, dob, idno, idproof, gender, password) values
+$sql = $conn->prepare("INSERT INTO $voter (voter_name, dob, idno, idproof, gender, password) values
 (:cname,:cdob,:cidno,:citype,:cgender,:cpd)");
 $sql->bindParam(':cname', $cname, PDO::PARAM_STR, 100);
 $sql->bindParam(':cdob', $cdob);

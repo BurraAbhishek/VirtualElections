@@ -15,14 +15,16 @@
     <?php
 error_reporting(0);
     
-$servername = "localhost";
-$username = "root";
-$password = "";
+require '../db/dbconfig.php';
+require "../db/tablesconfig.php";
+
     
 try {
-$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
-$sql1 = $conn->prepare("SELECT voterregistrations FROM admin WHERE admin_id = 'admin'");
+	$tables = new Table();
+    $admin = $tables->getAdminStatus();
+	$dbconn = new Connection();
+	$conn = $dbconn->openConnection();
+$sql1 = $conn->prepare("SELECT voterregistrations FROM $admin WHERE admin_id = 'admin'");
 $sql1->execute();
 $status = $sql1->fetchAll();
 $html = '<div id="mainbody" class="mainbody">

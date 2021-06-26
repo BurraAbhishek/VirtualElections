@@ -4,22 +4,25 @@
 ?>
 
 <?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
+
+	require '../db/dbconfig.php';
+	require '../db/tablesconfig.php';
+
+	$tables = new Table();
+	$voter = $tables->getVoterList();
+	$dbconn = new Connection();
+	$conn = $dbconn->openConnection();
 
 	try {
-		$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);	
 		if(isset($_POST['save'])) {
 			$pwd = $_POST['cpd1'];
 			$citype = $_POST['citype'];
 			$cidno = $_POST['cidno'];
-			$sth = $conn->prepare("SELECT * FROM voter WHERE idproof = :citype AND idno = :cidno");
-			$sth->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
-			$sth->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
-			$sth->execute();
-			$userid = $sth->fetchAll();
+			$sql = $conn->prepare("SELECT * FROM $voter WHERE idproof = :citype AND idno = :cidno");
+			$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
+			$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
+			$sql->execute();
+			$userid = $sql->fetchAll();
 			foreach($userid as $u){
 				$u1 = $u['idproof'];
 				$u2 = $u['idno'];
@@ -30,7 +33,7 @@
 				$_SESSION["votername"] = $u['voter_name'];
 				echo '<script>window.location.href="check_if_already_voted.php";</script>';
 			} else {
-				echo '<script>alert("VerificationError: Voter is not registered.");window.location.href="voter_login.html";</script>';
+				echo '<script>alert("VerificationError: Voter is not registered.");window.location.replace("voter_login.php");</script>';
 			}
 		}
 	}

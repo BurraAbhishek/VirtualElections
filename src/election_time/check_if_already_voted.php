@@ -4,19 +4,23 @@
 ?>
 
 <?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
+	
+	require '../db/dbconfig.php';
+	require '../db/tablesconfig.php';
+
+    $tables = new Table();
+    $votescast = $tables->getVotes();
+    $party = $tables->getPartyList();
+    $dbconn = new Connection();
+    $conn = $dbconn->openConnection();
 
 	try {
-		$conn = new PDO("mysql:host=$servername;dbname=virtualelection", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);	
 		$voter_id = $_SESSION["voterid"];
-		$sql = $conn->prepare('SELECT * FROM election WHERE voter_id = :voter_id');
+		$sql = $conn->prepare("SELECT * FROM $votescast WHERE voter_id = :voter_id");
 		$sql->execute(['voter_id' => $voter_id]);
 		$result = $sql->fetchAll();
 		if(count($result)==0){
-			$stmt = $conn->prepare("SELECT * FROM parties");
+			$stmt = $conn->prepare("SELECT * FROM $party");
 			$stmt->execute();
 			$r = $stmt->fetchAll();
 			$a = [];
