@@ -4,7 +4,7 @@
         private $admin = 'admin';
         private $voter = 'voter';
         private $party = 'parties';
-        public $votescast = 'election';
+        private $votescast = 'election';
         public function getAdminStatus() {
             return $this->admin;
         }
