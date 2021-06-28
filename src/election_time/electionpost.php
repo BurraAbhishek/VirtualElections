@@ -35,18 +35,26 @@
     <header class="appbar">Virtual Election</header>
     <div id="mainbody" class="mainbody">
         <h1>Hello, <span id="votername"></span>!</h1>
-        <script>document.getElementById("votername").innerHTML = sessionStorage.getItem("votername"); </script>
+        <script>
+            document.getElementById("votername").innerHTML = sessionStorage.getItem("votername"); 
+        </script>
         <h1>Are you really sure that you want to vote for the following party / none of the above :</h1>
         <form action="cast_vote.php" method="post">
-            <center><input readonly name="myinput" id="myinput" style="font-size:1em; width: 80%;"></center><br>
-            <center><input type="submit" name="save" value="YES, FINALIZE CASTED VOTE" class="submitbtn"
-                    style="width: 80%;"></center>
-        </form><br>
+            <center>
+                <input readonly name="myinput" id="myinput" style="font-size:1em; width: 80%;">
+            </center>
+            <br>
+            <center>
+                <input type="submit" name="save" value="YES, FINALIZE CASTED VOTE" class="submitbtn" style="width: 80%;">
+            </center>
+        </form>
+        <br>
         <script>
             document.getElementById("myinput").value = sessionStorage.getItem("voted");
         </script>
-        <center><button class="submitbtn" onclick="javascript:window.location.href='election.php';"
-                style="width: 80%;">NO, GO BACK</button></center>
+        <center>
+            <button class="submitbtn" onclick="javascript:window.location.href='election.php';" style="width: 80%;">NO, GO BACK</button>
+        </center>
     </div>
 </body>
 
