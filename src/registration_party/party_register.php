@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
 
 	require '../db/dbconfig.php';
 	require '../db/tablesconfig.php';
@@ -31,10 +32,10 @@
 	catch(Exception $e)
 	{
 		if(strcasecmp($e->getMessage(), "Invalid Identity proof") == 0) {
-			header("Location: ../tosviolation/violated.html");
+			header("Location: ../tos_mark/corrections_userinput.html");
 		}
 		elseif(strcasecmp($e->getMessage(), "Invalid name") == 0) {
-			header("Location: ../tosviolation/violated.html");
+			header("Location: ../tos_mark/corrections_userinput.html");
 		}
 		else {
 			header("Location: registration.php");

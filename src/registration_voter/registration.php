@@ -33,7 +33,7 @@
                             <table style="width: 100%;">
                                 <tr>
                                     <td style="text-align: right;">Voter\'s Name: </td>
-                                    <td><input type="text" name="cname" id="cname" required></td>
+                                    <td><input type="text" name="cname" id="cname" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" title="Maximum 100 characters. The following characters are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;">Date of birth: </td>
@@ -50,11 +50,11 @@
                                 <tr>
                                     <td style="text-align: right;"><abbr title="Type of ID Proof, default is passport"
                                             style="text-decoration: none;">Identification type: </abbr></td>
-                                    <td><input type="text" name="citype" id="citype" value="Passport" required></td>
+                                    <td><input type="text" name="citype" id="citype" value="Passport" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" title="Maximum 20 characters. The following characters are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;">Passport / ID Number: </td>
-                                    <td><input type="text" name="cidno" id="cidno" required></td>
+                                    <td><input type="text" name="cidno" id="cidno" pattern="^(?!^0+$)[a-zA-Z0-9]{3,50}$" title="Only 3 to 50 characters. Only numbers, uppercase and lowercase. The sequence should not be all 0s." required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;">Enter Password: </td>

@@ -12,7 +12,7 @@
     <header class="appbar">Contestant Registration</header>
 
     <?php
-        //error_reporting(0);
+        error_reporting(0);
 
         require '../db/dbconfig.php';
         require '../db/tablesconfig.php';
