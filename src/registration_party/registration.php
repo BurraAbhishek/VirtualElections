@@ -12,7 +12,7 @@
     <header class="appbar">Contestant Registration</header>
 
     <?php
-        error_reporting(0);
+        //error_reporting(0);
 
         require '../db/dbconfig.php';
         require '../db/tablesconfig.php';
@@ -32,20 +32,20 @@
                             <table style="width: 100%;">
                                 <tr>
                                     <td style="text-align: right;">Party Name: </td>
-                                    <td><input type="text" name="pname" id="pname" required></td>
+                                    <td><input type="text" name="pname" id="pname" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" title="Maximum 100 characters. The following characters are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;">Candidate Name: </td>
-                                    <td><input type="text" name="cname" id="cname" required></td>
+                                    <td><input type="text" name="cname" id="cname" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" title="Maximum 100 characters. The following characters are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;"><abbr title="Type of ID Proof, default is passport"
                                             style="text-decoration: none;">Identification type: </abbr></td>
-                                    <td><input type="text" name="citype" id="citype" value="Passport" required></td>
+                                    <td><input type="text" name="citype" id="citype" value="Passport" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" title="Maximum 20 characters. The following characters are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;">Passport / ID Number of Candidate: </td>
-                                    <td><input type="text" name="cidno" id="cidno" required></td>
+                                    <td><input type="text" name="cidno" id="cidno" pattern="^(?!^0+$)[a-zA-Z0-9]{3,50}$" title="Only 3 to 50 characters. Only numbers, uppercase and lowercase. The sequence should not be all 0s." required></td>
                                 </tr>                    
                                 <tr>
                                     <td colspan=2 style="text-align: center;"><input class="submitbtn" type="submit" value="SUBMIT"

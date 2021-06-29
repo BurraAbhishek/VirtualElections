@@ -2,6 +2,7 @@
 
 	require '../db/dbconfig.php';
 	require '../db/tablesconfig.php';
+	require '../controllers/post_validate.php';
 
 	$tables = new Table();
 	$party = $tables->getPartyList();
@@ -10,10 +11,10 @@
 
 	try {
 		if(isset($_POST['save'])){
-			$pname = $_POST['pname'];
-			$cname = $_POST['cname'];
-			$citype = $_POST['citype'];
-			$cidno = $_POST['cidno'];
+			$pname = validateName(validateDatatype($_POST['pname'], 'string'));
+			$cname = validateName(validateDatatype($_POST['cname'], 'string'));
+			$citype =  validateName(validateDatatype($_POST['citype'], 'string'));
+			$cidno =  validateID(validateDatatype($_POST['cidno'], 'string'));
 			$sql = $conn->prepare("INSERT INTO $party (party_name, candidate, idno, idproof) values (:pname,:cname,:cidno, :citype)");
 			$sql->bindParam(':pname',$pname, PDO::PARAM_STR, 100);
 			$sql->bindParam(':cname',$cname, PDO::PARAM_STR, 100);
@@ -27,9 +28,17 @@
 		}
 	}
 
-	catch(PDOException $e)
+	catch(Exception $e)
 	{
-		echo $e->getMessage();
+		if(strcasecmp($e->getMessage(), "Invalid Identity proof") == 0) {
+			header("Location: ../tosviolation/violated.html");
+		}
+		elseif(strcasecmp($e->getMessage(), "Invalid name") == 0) {
+			header("Location: ../tosviolation/violated.html");
+		}
+		else {
+			header("Location: registration.php");
+		}
 	}
 
 	$conn = null;
