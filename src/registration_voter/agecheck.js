@@ -1,4 +1,5 @@
 /* This script checks if the voter has attained the minimum age required to vote. */
+/* If age is not a voting parameter, set the minimum age to 0 */
 
 // The minimum age required to vote.
 var min_age = 18;
@@ -7,7 +8,7 @@ var min_age = 18;
 function calculate_age(dob) {
     var diff1 = Date.now() - dob.getTime();
     var age_dt = new Date(diff1);
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
+    return (age_dt.getUTCFullYear() - 1970);
 }
 
 // Verify that the candidate has attained the minimum voting age.
