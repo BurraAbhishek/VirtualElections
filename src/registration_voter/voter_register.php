@@ -20,7 +20,7 @@
 				$citype = validateName(validateDatatype($_POST['citype'], 'string'));
 				$cidno = validateName(validateDatatype($_POST['cidno'], 'string'));
 				$cgender = validateName(validateDatatype($_POST['cgender'], 'string'));
-				$cpd = validate($_POST['cpd1'], 'ANY');
+				$cpd = validateDatatype($_POST['cpd1'], 'ANY');
 				$cpd1 = password_hash($cpd, PASSWORD_DEFAULT);
 				$sql = $conn->prepare("INSERT INTO $voter (voter_name, dob, idno, idproof, gender, password) values (:cname,:cdob,:cidno,:citype,:cgender,:cpd)");
 				$sql->bindParam(':cname', $cname, PDO::PARAM_STR, 100);
