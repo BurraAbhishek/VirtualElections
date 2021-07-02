@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.appbar {
+    height: 3%;
+    background-color: #0000FF;
+    color: #00FF00;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
+    padding: 1% 1%;
+    font-size: 1.75em;
+    font-weight: bold;
+    display: block;
+}
+
+p1,
+p2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
+    padding: 0.5% 0.5%;
+}
+
+h1,
+h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
+    background-color: #3399ff;
+    color: #ccffee;
+    padding: 0.5% 0.5%;
+}
+
+table,
+th,
+td {
+    border: 1px solid #0000FF;
+    background-color: inherit;
+    text-align:center;
+    font-size: 1.3em;
+    color: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
+    }
+
+td {
+    padding: 0.5% 0.5%;
+}
+
+.center-text {
+    text-align:center;
+}
+
+.submitbtn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
+    background-color: #00FF00;
+    color: #0000FF;
+    border: none;
+    width: 20%;
+    height: 5%;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+input, select {
+    border: 1px solid #00FF00;
+    background-color: #333333;
+    color: #FBFBFB;
+}
