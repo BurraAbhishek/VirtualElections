@@ -10,22 +10,28 @@
 
     $tables = new Table();
     $votescast = $tables->getVotes();
-    $party = $tables->getPartyList();
+	$votes = $votescast["table"];
+	$voter_id = $votescast["voter"];
+	$party_id = $votescast["party"];
+    $partytable = $tables->getPartyList();
+	$party = $partytable["table"];
+	$partyid = $partytable["id"];
+	$party_name = $partytable["party_name"];
     $dbconn = new Connection();
     $conn = $dbconn->openConnection();
 
 	try {	
-		$voter_id = $_SESSION["voterid"];
+		$voterid = $_SESSION["voterid"];
 		$voted_for = (string)$_POST["myinput"];
-		$sql = $conn->prepare("SELECT party_id FROM $party WHERE party_name = :voted_for");
-		$sql->execute(['voted_for' => $voted_for]);
+		$sql = $conn->prepare("SELECT $partyid FROM $party WHERE $party_name = :voted_for");
+		$sql->execute([':voted_for' => $voted_for]);
 		$result = $sql->fetchAll();
 		$v = 0;
 		foreach($result as $s){
 			$v = $s["party_id"];
 		}
-		$stmt = $conn->prepare("INSERT INTO $votescast (voter_id, party_id) values (:voter_id, :v)");
-		$stmt->bindParam(':voter_id', $voter_id, PDO::PARAM_INT);
+		$stmt = $conn->prepare("INSERT INTO $votes ($voter_id, $party_id) values (:voter_id, :v)");
+		$stmt->bindParam(':voter_id', $voterid, PDO::PARAM_INT);
 		$stmt->bindParam(':v', $v, PDO::PARAM_INT);
 		if($stmt->execute()){
 			session_destroy();
@@ -35,7 +41,7 @@
 			echo '<script>window.location.replace("votecomplete.html");</script>';
 		} else {
 			echo '<script>alert("VoteError: This vote was not recognized.");</script>';
-			echo '<script>window.location.replace("election.html");</script>';
+			echo '<script>window.location.replace("election.php");</script>';
 		}
 	}
 

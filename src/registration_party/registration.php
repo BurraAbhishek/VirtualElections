@@ -19,13 +19,18 @@
 
         $tables = new Table();
         $admin = $tables->getAdminStatus();
+        $admin_table = $admin["table"];
+        $party = $admin["party"];
+        $admin_id = $admin["id"];
+        $id_default = $admin["id_default"];
         $dbconn = new Connection();
         $conn = $dbconn->openConnection();
 
-        try {
-            $sql1 = $conn->prepare("SELECT partyregistrations FROM $admin WHERE admin_id = 'admin'");
-            $sql1->execute();
-            $status = $sql1->fetchAll();
+        try {         
+            $sql = $conn->prepare("SELECT $party FROM $admin_table WHERE $admin_id = :a");
+            $sql->bindParam(':a', $id_default);
+            $sql->execute();
+            $status = $sql->fetchAll();
             $html = '<div id="mainbody" class="mainbody">
                     <form action="party_register.php" method="post">
                         <p1>
@@ -56,7 +61,7 @@
                     </form>
                 </div>';
 
-            if($status[0]['partyregistrations'] != 0) {
+            if($status[0][$party] != 0) {
                 $html = preg_replace('#<div id="mainbody">(.*?)</div>#', '', $html);
                 echo '<h2>This section is closed</h2>';
             } else {

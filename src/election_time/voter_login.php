@@ -19,13 +19,17 @@
 
         $tables = new Table();
         $admin = $tables->getAdminStatus();
-        $votescast = $tables->getVotes();
-        $party = $tables->getPartyList();
+        $admin_table = $admin["table"];
+        $votecasting = $admin["votecast"];
+        $admin_id = $admin["id"];
+        $id_default = $admin["id_default"]; 
+        //$votescast = $tables->getVotes();
+        //$party = $tables->getPartyList();
         $dbconn = new Connection();
         $conn = $dbconn->openConnection();
 
         try {
-            $sql1 = $conn->prepare("SELECT votecasting FROM $admin WHERE admin_id = 'admin'");
+            $sql1 = $conn->prepare("SELECT $votecasting FROM $admin_table WHERE $admin_id = 'admin'");
             $sql1->execute();
             $status = $sql1->fetchAll();
             $html = '<div id="mainbody" class="mainbody">
@@ -38,7 +42,7 @@
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;"><abbr title="Type of ID Proof, default is passport"
-                                            style="text-decoration: none;">Identification type: <abbr></td>
+                                            style="text-decoration: none;">Identification type: </abbr></td>
                                     <td><input type="text" name="citype" id="citype" value="Passport" required></td>
                                 </tr>
                                 <tr>
@@ -58,7 +62,7 @@
                     </form>
                 </div>';
 
-            if($status[0]['votecasting'] != 0) {
+            if($status[0][$votecasting] != 0) {
                 $html = preg_replace('#<div id="mainbody">(.*?)</div>#', '', $html);
                 echo '<h2>This section is closed</h2>';
             } else {

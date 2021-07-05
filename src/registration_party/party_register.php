@@ -7,6 +7,11 @@
 
 	$tables = new Table();
 	$party = $tables->getPartyList();
+	$party_table = $party["table"];
+	$party_name = $party["party_name"];
+	$candidate = $party["candidate_name"];
+	$idno = $party["idproof_value"];
+	$idproof = $party["idproof_type"];
 	$dbconn = new Connection();
 	$conn = $dbconn->openConnection();
 
@@ -16,7 +21,7 @@
 			$cname = validateName(validateDatatype($_POST['cname'], 'string'));
 			$citype =  validateName(validateDatatype($_POST['citype'], 'string'));
 			$cidno =  validateID(validateDatatype($_POST['cidno'], 'string'));
-			$sql = $conn->prepare("INSERT INTO $party (party_name, candidate, idno, idproof) values (:pname,:cname,:cidno, :citype)");
+			$sql = $conn->prepare("INSERT INTO $party_table ($party_name, $candidate, $idno, $idproof) values (:pname,:cname,:cidno, :citype)");
 			$sql->bindParam(':pname',$pname, PDO::PARAM_STR, 100);
 			$sql->bindParam(':cname',$cname, PDO::PARAM_STR, 100);
 			$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);

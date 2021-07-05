@@ -9,14 +9,19 @@
 	require '../db/tablesconfig.php';
 
     $tables = new Table();
-    $votescast = $tables->getVotes();
-    $party = $tables->getPartyList();
+    $votes_table = $tables->getVotes();
+	$votescast = $votes_table["table"];
+	$voterid = $votes_table["voter"];
+    $party_table = $tables->getPartyList();
+	$party = $party_table["table"];
+	$partyname = $party_table["party_name"];
+	$candidate = $party_table["candidate_name"];
     $dbconn = new Connection();
     $conn = $dbconn->openConnection();
 
 	try {
 		$voter_id = $_SESSION["voterid"];
-		$sql = $conn->prepare("SELECT * FROM $votescast WHERE voter_id = :voter_id");
+		$sql = $conn->prepare("SELECT * FROM $votescast WHERE $voterid = :voter_id");
 		$sql->execute(['voter_id' => $voter_id]);
 		$result = $sql->fetchAll();
 		if(count($result)==0){
@@ -26,7 +31,7 @@
 			$a = [];
 			foreach($r as $s){
 				$b = [];
-				array_push($b,$s['party_name'],$s['candidate']);
+				array_push($b,$s[$partyname],$s[$candidate]);
 				array_push($a,$b);
 			}
 			$c = json_encode($a);

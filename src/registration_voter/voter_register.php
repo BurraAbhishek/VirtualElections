@@ -6,7 +6,15 @@
 	require '../controllers/post_validate.php';
 
 	$tables = new Table();
-	$voter = $tables->getVoterList();
+	$voter_table = $tables->getVoterList();
+	$voter = $voter_table["table"];
+	$voter_name = $voter_table["voter_name"];
+	$dob = $voter_table["voter_dob"];
+	$idno = $voter_table["idproof_value"];
+	$idproof = $voter_table["idproof_type"];
+	$gender = $voter_table["voter_gender"];
+	$password = $voter_table["password"];
+
 	$dbconn = new Connection();
 	$conn = $dbconn->openConnection();
 
@@ -22,7 +30,7 @@
 				$cgender = validateName(validateDatatype($_POST['cgender'], 'string'));
 				$cpd = validateDatatype($_POST['cpd1'], 'ANY');
 				$cpd1 = password_hash($cpd, PASSWORD_DEFAULT);
-				$sql = $conn->prepare("INSERT INTO $voter (voter_name, dob, idno, idproof, gender, password) values (:cname,:cdob,:cidno,:citype,:cgender,:cpd)");
+				$sql = $conn->prepare("INSERT INTO $voter ($voter_name, $dob, $idno, $idproof, $gender, $password) values (:cname,:cdob,:cidno,:citype,:cgender,:cpd)");
 				$sql->bindParam(':cname', $cname, PDO::PARAM_STR, 100);
 				$sql->bindParam(':cdob', $cdob);
 				$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);

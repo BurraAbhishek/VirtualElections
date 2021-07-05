@@ -30,30 +30,40 @@
 
     <?php
         $tables = new Table();
-        $admin = $tables->getAdminStatus();
-        $votescast = $tables->getVotes();
+        $admin_data = $tables->getAdminStatus();
+        $admin = $admin_data["table"];
+        $admin_id = $admin_data["id"];
+        $id_default = $admin_data["id_default"];
+        $resultenabled = $admin_data["results"];
+        $votesdata = $tables->getVotes();
+        $votescast = $votesdata["table"];
+        $votespartyid = $votesdata["party"];
         $party = $tables->getPartyList();
+        $party_table = $party["table"];
+        $party_name = $party["party_name"];
+        $party_id = $party["id"];
         $dbconn = new Connection();
         $conn = $dbconn->openConnection();
 
         try {
-           $sql1 = $conn->prepare("SELECT results FROM $admin WHERE admin_id = 'admin'");
+            $sql1 = $conn->prepare("SELECT $resultenabled FROM $admin WHERE $admin_id = :a");
+            $sql1->bindParam(':a', $id_default);
             $sql1->execute();
             $status = $sql1->fetchAll();
-            if($status[0]['results'] == 0) {
-                $sql2 = $conn->prepare("SELECT party_id FROM $votescast");
+            if($status[0][$resultenabled] == 0) {
+                $sql2 = $conn->prepare("SELECT $votespartyid FROM $votescast");
                 $sql2->execute();
                 $userid = $sql2->fetchAll();
                 $d = [];
                 foreach($userid as $u){
-                    array_push($d,$u['party_id']);
+                    array_push($d,$u[$votespartyid]);
                 }
-                $sql3 = $conn->prepare("SELECT party_name FROM parties ORDER BY party_id");
+                $sql3 = $conn->prepare("SELECT $party_name FROM $party_table ORDER BY $party_id");
                 $sql3->execute();
                 $party = $sql3->fetchAll();
                 $g = ["None of the above"];
                 foreach($party as $p){
-                    array_push($g,$p['party_name']);
+                    array_push($g,$p[$party_name]);
                 }
                 $h = json_encode($g);
                 $c = json_encode(array_count_values($d));
@@ -63,7 +73,7 @@
                 echo '<script>var g = JSON.stringify(';
                 echo "$h";
                 echo ');</script>';
-            } elseif($status[0]['results'] == 1) {
+            } elseif($status[0][$resultenabled] == 1) {
                 echo '<h1>Results are yet to be announced.</h1>';
             }
         }
@@ -101,7 +111,8 @@
 
         var u1 = [];
         for (var i = 0; i < q.length; i++) {
-            var d = ""; d += i;
+            var d = "";
+            d += i;
             if (typeof (h[d]) === "undefined" || typeof (h[d]) === null) { u1[i] = 0; } else { u1[i] = h[d]; }
         }
 
