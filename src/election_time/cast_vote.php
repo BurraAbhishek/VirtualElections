@@ -5,8 +5,9 @@
 
 <?php
 	
-	require '../db/dbconfig.php';
-	require '../db/tablesconfig.php';
+	require_once '../db/dbconfig.php';
+	require_once '../db/tablesconfig.php';
+	require_once '../controllers/ssl.php';
 
     $tables = new Table();
     $votescast = $tables->getVotes();
@@ -17,12 +18,13 @@
 	$party = $partytable["table"];
 	$partyid = $partytable["id"];
 	$party_name = $partytable["party_name"];
+	$send = new SecureData();
     $dbconn = new Connection();
     $conn = $dbconn->openConnection();
 
 	try {	
 		$voterid = $_SESSION["voterid"];
-		$voted_for = (string)$_POST["myinput"];
+		$voted_for = $send->encrypt($_POST["myinput"]);
 		$sql = $conn->prepare("SELECT $partyid FROM $party WHERE $party_name = :voted_for");
 		$sql->execute([':voted_for' => $voted_for]);
 		$result = $sql->fetchAll();

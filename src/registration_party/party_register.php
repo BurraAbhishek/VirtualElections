@@ -1,9 +1,10 @@
 <?php
     error_reporting(0);
 
-	require '../db/dbconfig.php';
-	require '../db/tablesconfig.php';
-	require '../controllers/post_validate.php';
+	require_once '../db/dbconfig.php';
+	require_once '../db/tablesconfig.php';
+	require_once '../controllers/ssl.php';
+	require_once '../controllers/post_validate.php';
 
 	$tables = new Table();
 	$party = $tables->getPartyList();
@@ -14,20 +15,21 @@
 	$idproof = $party["idproof_type"];
 	$dbconn = new Connection();
 	$conn = $dbconn->openConnection();
+	$crypto = new SecureData();
 
 	try {
 		if(isset($_POST['save'])){
-			$pname = validateName(validateDatatype($_POST['pname'], 'string'));
-			$cname = validateName(validateDatatype($_POST['cname'], 'string'));
-			$citype =  validateName(validateDatatype($_POST['citype'], 'string'));
-			$cidno =  validateID(validateDatatype($_POST['cidno'], 'string'));
+			$pname = $crypto->encrypt(validateName(validateDatatype($_POST['pname'], 'string')));
+			$cname = $crypto->encrypt(validateName(validateDatatype($_POST['cname'], 'string')));
+			$citype =  $crypto->encrypt(validateName(validateDatatype($_POST['citype'], 'string')));
+			$cidno =  $crypto->encrypt(validateID(validateDatatype($_POST['cidno'], 'string')));
 			$sql = $conn->prepare("INSERT INTO $party_table ($party_name, $candidate, $idno, $idproof) values (:pname,:cname,:cidno, :citype)");
-			$sql->bindParam(':pname',$pname, PDO::PARAM_STR, 100);
-			$sql->bindParam(':cname',$cname, PDO::PARAM_STR, 100);
-			$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
-			$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
+			$sql->bindParam(':pname', $pname, PDO::PARAM_STR, 512);
+			$sql->bindParam(':cname', $cname, PDO::PARAM_STR, 512);
+			$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 256);
+			$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 256);
 			if($sql->execute()) {
-				echo '<script>window.location.href="registration_success.html";</script>';
+				header("Location: registration_success.html");
 			} else {
 				echo '<script>alert("CredentialsError: Registration Failed! Please try again.");window.location.href="registration.php";</script>';
 			}

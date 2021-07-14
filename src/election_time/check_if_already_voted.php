@@ -5,8 +5,9 @@
 
 <?php
 	
-	require '../db/dbconfig.php';
-	require '../db/tablesconfig.php';
+	require_once '../db/dbconfig.php';
+	require_once '../db/tablesconfig.php';
+	require_once '../controllers/ssl.php';
 
     $tables = new Table();
     $votes_table = $tables->getVotes();
@@ -16,6 +17,7 @@
 	$party = $party_table["table"];
 	$partyname = $party_table["party_name"];
 	$candidate = $party_table["candidate_name"];
+	$show = new SecureData();
     $dbconn = new Connection();
     $conn = $dbconn->openConnection();
 
@@ -31,7 +33,7 @@
 			$a = [];
 			foreach($r as $s){
 				$b = [];
-				array_push($b,$s[$partyname],$s[$candidate]);
+				array_push($b,$show->decrypt($s[$partyname]),$show->decrypt($s[$candidate]));
 				array_push($a,$b);
 			}
 			$c = json_encode($a);

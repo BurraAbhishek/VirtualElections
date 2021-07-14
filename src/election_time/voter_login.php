@@ -23,8 +23,6 @@
         $votecasting = $admin["votecast"];
         $admin_id = $admin["id"];
         $id_default = $admin["id_default"]; 
-        //$votescast = $tables->getVotes();
-        //$party = $tables->getPartyList();
         $dbconn = new Connection();
         $conn = $dbconn->openConnection();
 
