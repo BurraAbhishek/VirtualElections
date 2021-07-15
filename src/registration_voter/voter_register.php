@@ -1,9 +1,10 @@
 <?php
 	error_reporting(0);
 
-	require '../db/dbconfig.php';
-	require '../db/tablesconfig.php';
-	require '../controllers/post_validate.php';
+	require_once '../db/dbconfig.php';
+	require_once '../db/tablesconfig.php';
+	require_once '../controllers/post_validate.php';
+	require_once '../controllers/ssl.php';
 
 	$tables = new Table();
 	$voter_table = $tables->getVoterList();
@@ -15,6 +16,8 @@
 	$gender = $voter_table["voter_gender"];
 	$password = $voter_table["password"];
 
+	$crypto = new SecureData();
+
 	$dbconn = new Connection();
 	$conn = $dbconn->openConnection();
 
@@ -23,19 +26,19 @@
 			if(($_POST['cpd1']) != ($_POST['cpd2'])) {
 				echo '<script>alert("Confirm your password properly");window.location.replace("registration.php");</script>';
 			} else {
-				$cname = validateName(validateDatatype($_POST['cname'], 'string'));
-				$cdob = validateDatatype($_POST['cdob'], 'ANY');
-				$citype = validateName(validateDatatype($_POST['citype'], 'string'));
-				$cidno = validateName(validateDatatype($_POST['cidno'], 'string'));
-				$cgender = validateName(validateDatatype($_POST['cgender'], 'string'));
+				$cname = $crypto->encrypt(validateName(validateDatatype($_POST['cname'], 'string')));
+				$cdob = $crypto->encrypt(validateDatatype($_POST['cdob'], 'ANY'));
+				$citype = $crypto->encrypt(validateName(validateDatatype($_POST['citype'], 'string')));
+				$cidno = $crypto->encrypt(validateName(validateDatatype($_POST['cidno'], 'string')));
+				$cgender = $crypto->encrypt(validateName(validateDatatype($_POST['cgender'], 'string')));
 				$cpd = validateDatatype($_POST['cpd1'], 'ANY');
 				$cpd1 = password_hash($cpd, PASSWORD_DEFAULT);
 				$sql = $conn->prepare("INSERT INTO $voter ($voter_name, $dob, $idno, $idproof, $gender, $password) values (:cname,:cdob,:cidno,:citype,:cgender,:cpd)");
-				$sql->bindParam(':cname', $cname, PDO::PARAM_STR, 100);
+				$sql->bindParam(':cname', $cname, PDO::PARAM_STR, 256);
 				$sql->bindParam(':cdob', $cdob);
-				$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
-				$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
-				$sql->bindParam(':cgender', $cgender, PDO::PARAM_STR, 6);
+				$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 256);
+				$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 256);
+				$sql->bindParam(':cgender', $cgender, PDO::PARAM_STR, 128);
 				$sql->bindParam(':cpd', $cpd1);
 				if($sql->execute()) {
 					echo '<script>window.location.href="registration_success.html";</script>';

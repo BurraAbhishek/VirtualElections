@@ -58,11 +58,11 @@
                 $p = $t["password"];
                 $sqlCreate = $c2->prepare("CREATE TABLE `$table` (
                     `$i` int(11) NOT NULL,
-                    `$n` varchar(100) NOT NULL,
-                    `$g` varchar(6) NOT NULL,
-                    `$d` date NOT NULL,
-                    `$k` varchar(20) NOT NULL,
-                    `$v` varchar(50) NOT NULL,
+                    `$n` varchar(256) NOT NULL,
+                    `$g` varchar(128) NOT NULL,
+                    `$d` varchar(256) NOT NULL,
+                    `$k` varchar(256) NOT NULL,
+                    `$v` varchar(256) NOT NULL,
                     `$p` varchar(256) NOT NULL
                   );");
                 $sqlCreate->execute();
@@ -123,10 +123,10 @@
                 $v = $t["idproof_value"];
                 $sqlCreate = $c4->prepare("CREATE TABLE `$table` (
                     `$i` int(11) NOT NULL,
-                    `$n` varchar(100) NOT NULL,
-                    `$c` varchar(100) NOT NULL,
-                    `$d` varchar(20) NOT NULL,
-                    `$v` varchar(50) NOT NULL
+                    `$n` varchar(512) NOT NULL,
+                    `$c` varchar(512) NOT NULL,
+                    `$d` varchar(256) NOT NULL,
+                    `$v` varchar(256) NOT NULL
                 );");
                 $sqlCreate->execute();
                 echo 'Contestant table structure created<br>';

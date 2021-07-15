@@ -1,8 +1,9 @@
 <?php
     error_reporting(0);
 
-    require "../db/tablesconfig.php";
-    require "../db/dbconfig.php";
+    require_once "../db/tablesconfig.php";
+    require_once "../db/dbconfig.php";
+    require_once "../controllers/ssl.php";
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +43,7 @@
         $party_table = $party["table"];
         $party_name = $party["party_name"];
         $party_id = $party["id"];
+        $s = new SecureData();
         $dbconn = new Connection();
         $conn = $dbconn->openConnection();
 
@@ -63,7 +65,7 @@
                 $party = $sql3->fetchAll();
                 $g = ["None of the above"];
                 foreach($party as $p){
-                    array_push($g,$p[$party_name]);
+                    array_push($g,$s->decrypt($p[$party_name]));
                 }
                 $h = json_encode($g);
                 $c = json_encode(array_count_values($d));
