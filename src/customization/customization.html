@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customizations</title>
+    <script src="../controllers/css.js"></script>
+    <script>
+        loadCSS(1);
+    </script>
+    <style>
+        p1 {
+            padding: 1% 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Customization</h1>
+    <p1>
+        At the moment, only toggling between light and dark mode is supported. If the changes are not yet 
+        reflected, refresh the page(s) where the changes are yet to be reflected.
+    </p1>
+    <h2>
+        <label for="themeselect">Select Theme:</label>
+        <select name="themeselect" id="themeselect" onchange="javascript:changeTheme();">
+            <option value="Default">Light</option>
+            <option value="Dark">Dark</option>
+        </select>
+    </h2>
+    <script>
+        if (typeof (Storage) !== "undefined") {
+            document.getElementById("themeselect").value = localStorage.getItem(getColorModeTitle());
+        } else {
+            var d = new Date();
+            if (d.getHours() >= 6 && d.getHours() < 18) {
+                document.getElementById("themeselect").value = "Default";
+            } else {
+                document.getElementById("themeselect").value = "Dark";
+            }
+        }
+    </script>
+    <script>
+        function changeTheme() {
+            if(typeof (Storage) !== "undefined") {
+                localStorage.setItem(getColorModeTitle(), document.getElementById("themeselect").value);
+            }
+            window.location.reload();
+        }
+    </script>
+</body>
+
+
+</html>
