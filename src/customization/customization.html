@@ -19,7 +19,7 @@
 <body>
     <h1>Customization</h1>
     <p1>
-        At the moment, only toggling between light and dark mode is supported. If the changes are not yet 
+        At the moment, only toggling between light and dark mode is supported. If the changes are not yet
         reflected, refresh the page(s) where the changes are yet to be reflected.
     </p1>
     <h2>
@@ -43,13 +43,12 @@
     </script>
     <script>
         function changeTheme() {
-            if(typeof (Storage) !== "undefined") {
+            if (typeof (Storage) !== "undefined") {
                 localStorage.setItem(getColorModeTitle(), document.getElementById("themeselect").value);
             }
             window.location.reload();
         }
     </script>
 </body>
-
 
 </html>
