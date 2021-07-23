@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Virtual Election Administration</title>
+    <script src="../controllers/css.js"></script>
+    <script>
+        loadCSS(1);
+    </script>
+    <style>
+        p1 {
+            padding: 1% 1%;
+            font-size: 1.3em;
+        }
+
+        h1 {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .flexbar {
+            width: 99%;
+            display: flex;
+            flex-direction: row;
+            padding: 0.5% 0.5%;
+            flex-grow: 1;
+        }
+
+        .flexcolumn {
+            flex-direction: column;
+        }
+
+        .flexcenter {
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flex-links {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .text-padded {
+            padding: 0.5% 0.5%;
+        }
+
+        .image_fit {
+            max-width: 40vw;
+            max-height: 65vh;
+            height: auto;
+            width: auto;
+        }
+
+        .get-started {
+            font-size: 1.25em;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
+            background-color: #FFC107;
+            color: #212121;
+            padding: 1% 2%;
+            margin-top: 1%;
+            text-decoration: none;
+            border-radius: 5%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .flexbar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="appbar">Virtual Election Portal Administration</header>
+    <h2>
+        <div class="flexbar flexcenter">
+            <!-- Important announcements go here... -->
+            IMPORTANT! Only site admins should have access to this page. Return HTTP 403 if otherwise.
+        </div>
+    </h2>
+    <div id="mainbody" class="mainbody flexbar flexcenter">
+        <!-- This div object describes your tool, so customize it as much as you want! -->
+        <div class="flexbar flexcenter">
+            <img src="../images/evm.png" alt="Electronic Voting Machine in a smartphone" class="image_fit">
+        </div>
+        <div class="flexbar flexcenter flexcolumn">
+            <p1 class="text-padded">While using this site for a real election, site admins are recommended to deny public access to this page for security reasons.</p1>
+            <a href="getstarted.html" target="_blank" class="get-started">Get Started</a>
+            <a href="../customization/customization.html" target="_blank" class="get-started">Customize page</a>
+        </div>
+    </div>
+</body>
+
+</html>
