@@ -37,3 +37,9 @@ In addition to this, it is recommended to use an identity verification method wh
 - Machine Learning algorithms are required to identify genuine documents with several methods of proving one's identity, take photographs of users during registration and verify with the photograph contained in the identity document.
 
 NOTE: It is recommended to use HTTPS and encrypt all traffic while deploying this application for security reasons.
+
+## LICENSE
+
+This repository is licensed under the [Apache License, Version 2.0](https://github.com/BurraAbhishek/VirtualElections/blob/main/LICENSE), unless otherwise mentioned.
+
+This repository currently does not contain any product names, service names or trade names. There are no trademarks, except if clearly mentioned as trademarks.
