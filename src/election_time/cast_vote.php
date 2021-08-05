@@ -40,10 +40,9 @@
 			echo '<script>if(sessionStorage.votername){sessionStorage.removeItem("votername");}</script>';
 			echo '<script>if(sessionStorage.voted){sessionStorage.removeItem("voted");}</script>';
 			echo '<script>if(sessionStorage.parties){sessionStorage.removeItem("parties");}</script>';
-			echo '<script>window.location.replace("votecomplete.html");</script>';
+			header("location: votecomplete.html");
 		} else {
-			echo '<script>alert("VoteError: This vote was not recognized.");</script>';
-			echo '<script>window.location.replace("election.php");</script>';
+			header("location: voteunrecognized.php");
 		}
 	}
 

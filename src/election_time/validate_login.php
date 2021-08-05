@@ -1,5 +1,9 @@
 <?php
 	error_reporting(0);
+	session_set_cookie_params([
+		'httponly' => true,
+		'samesite' => 'strict',
+	]);
 	session_start();
 ?>
 
