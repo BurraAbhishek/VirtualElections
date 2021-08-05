@@ -1,5 +1,10 @@
+function getColorModeTitle() {
+    var t = "virtualelection_colormode";
+    return t;
+}
+
 function loadCSS(n) {
-    var colorModeTitle = "virtualelection_colormode";
+    var colorModeTitle = getColorModeTitle();
     var s = document.createElement("link");
     s.rel = "stylesheet";
     s.setAttribute("type", "text/css");
