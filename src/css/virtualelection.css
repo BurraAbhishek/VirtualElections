@@ -58,6 +58,11 @@ td {
     font-weight: bold;
 }
 
+input, select {
+    font-size: 0.75em;
+    padding: 0.5% 0.5%;
+}
+
 .flex-links {
     display: flex;
     flex-grow: 1;
