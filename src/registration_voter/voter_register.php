@@ -24,7 +24,7 @@
 	try {
 		if(isset($_POST['save'])) {
 			if(($_POST['cpd1']) != ($_POST['cpd2'])) {
-				echo '<script>alert("Confirm your password properly");window.location.replace("registration.php");</script>';
+				header("Location: passwordnotconfirmed.html");
 			} else {
 				$cname = $crypto->encrypt(validateName(validateDatatype($_POST['cname'], 'string')));
 				$cdob = $crypto->encrypt(validateDatatype($_POST['cdob'], 'ANY'));
@@ -41,9 +41,9 @@
 				$sql->bindParam(':cgender', $cgender, PDO::PARAM_STR, 128);
 				$sql->bindParam(':cpd', $cpd1);
 				if($sql->execute()) {
-					echo '<script>window.location.href="registration_success.html";</script>';
+					header("Location: registration_success.html");
 				} else {
-					echo '<script>alert("CredentialsError: Registration Failed! Please try again.");window.location.href="registration.php";</script>';
+					header("Location: registration_failed.html");
 				}
 			}
 		}
@@ -58,7 +58,7 @@
 			header("Location: ../tos_mark/corrections_userinput.html");
 		}
 		else {
-			header("Location: registration.php");
+			header("Location: registration_failed.html");
 		}
 	}
 
