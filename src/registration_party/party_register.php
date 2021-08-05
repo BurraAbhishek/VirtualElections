@@ -31,7 +31,7 @@
 			if($sql->execute()) {
 				header("Location: registration_success.html");
 			} else {
-				echo '<script>alert("CredentialsError: Registration Failed! Please try again.");window.location.href="registration.php";</script>';
+				header("Location: registration_failed.html");
 			}
 		}
 	}
@@ -45,7 +45,7 @@
 			header("Location: ../tos_mark/corrections_userinput.html");
 		}
 		else {
-			header("Location: registration.php");
+			header("Location: registration_failed.html");
 		}
 	}
 
