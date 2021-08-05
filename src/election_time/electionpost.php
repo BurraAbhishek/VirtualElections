@@ -5,7 +5,7 @@
 
 <?php
     if(empty($_SESSION['votername'])) {
-        echo '<script>window.location.replace("../main.html");</script>';
+        echo '<script>window.location.replace("../index.html");</script>';
     }
 ?>
 
@@ -31,6 +31,16 @@
             color: inherit;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
         }
+        #myinput {
+            font-size: 1.5em;
+            width: 78%;
+            padding: 1% 1%;
+        }
+        .submitbtn {
+            font-size: 1.75em;
+            width: 80%;
+            padding: 0.5% 0.5%;
+        }
     </style>
 </head>
 
@@ -44,11 +54,11 @@
         <h1>Are you really sure that you want to vote for the following party / none of the above :</h1>
         <form action="cast_vote.php" method="post">
             <center>
-                <input readonly name="myinput" id="myinput" style="font-size:1em; width: 80%;">
+                <input readonly name="myinput" id="myinput">
             </center>
             <br>
             <center>
-                <input type="submit" name="save" value="YES, FINALIZE CASTED VOTE" class="submitbtn" style="width: 80%;">
+                <input type="submit" name="save" value="YES, FINALIZE VOTE" class="submitbtn">
             </center>
         </form>
         <br>

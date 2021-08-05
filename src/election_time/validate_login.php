@@ -41,9 +41,9 @@
 			if(($citype == $u1) && ($cidno == $u2) && (password_verify($pwd, $u3))) {
 				$_SESSION["voterid"] = $u[$voter_id];
 				$_SESSION["votername"] = $s->decrypt($u[$voter_name]);
-				echo '<script>window.location.href="check_if_already_voted.php";</script>';
+				header("location: check_if_already_voted.php");
 			} else {
-				echo '<script>alert("VerificationError: Voter is not registered.");window.location.replace("voter_login.php");</script>';
+				header("location: votefailed.html");
 			}
 		}
 	}

@@ -30,7 +30,8 @@
         $conn = $dbconn->openConnection();
 
         try {
-            $sql1 = $conn->prepare("SELECT $votecasting FROM $admin_table WHERE $admin_id = 'admin'");
+            $sql1 = $conn->prepare("SELECT $votecasting FROM $admin_table WHERE $admin_id = :a");
+            $sql1->bindParam(':a', $id_default);
             $sql1->execute();
             $status = $sql1->fetchAll();
             $html = '<div id="mainbody" class="mainbody">

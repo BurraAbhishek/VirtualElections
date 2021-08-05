@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../controllers/css.js"></script>
+    <script>
+        loadCSS(1);
+    </script>
+    <title>Verification failed</title>
+    <style>
+        input[type=submit] {
+            font-size: 0.8em;
+        }
+
+        .text-padded {
+            padding: 0.5% 0.5%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
+            font-size: 1.35em;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="appbar">
+        Voter Verification Failed
+    </header>
+    <div id="mainbody" class="mainbody">
+        <h1 class="center-text">VERIFICATION FAILED</h1>
+        <div class="text-padded">
+            Verification was unsuccessful. This might be due to one or more of the following reason(s):
+            <ul>
+                <li>The voter did not register for this election. In this case, register first.</li>
+                <li>The authentication details were not correct. In this case, try again.</li>
+            </ul>
+        </div>
+        <h1 class="center-text">
+            <form action="voter_login.php" method="POST">
+                <input type="submit" value="Try again">
+            </form>
+        </h1>
+    </div>
+</body>
+
+</html>

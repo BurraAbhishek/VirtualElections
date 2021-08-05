@@ -5,7 +5,7 @@
 
 <?php
     if(empty($_SESSION['votername'])) {
-        echo '<script>window.location.replace("../main.html");</script>';
+        echo '<script>window.location.replace("../index.html");</script>';
     }
 ?>
 
@@ -24,12 +24,18 @@
         table,
         th,
         td {
-            border: 1px solid black;
+            border: 1px solid #888888;
             background-color: inherit;
             text-align: center;
-            font-size: 1em;
+            font-size: 1.2em;
             color: inherit;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+        }
+        button {
+            font-size: 0.7em;
+        }
+        .fullwidth {
+            width: 100%;
         }
     </style>
 </head>
@@ -40,7 +46,7 @@
         <h1>Hello, <span id="votername"></span>!</h1>
         <script>document.getElementById("votername").innerHTML = sessionStorage.getItem("votername");</script>
         <h1>Cast your vote: </h1>
-        <table style="width: 100%;" id="table1"></table>
+        <table class="fullwidth" id="table1"></table>
         <script>
             var voted = "";
             var s = JSON.parse(sessionStorage.getItem("parties"));
