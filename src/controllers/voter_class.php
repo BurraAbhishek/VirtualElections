@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="css.js"></script>
+    <script src="../controllers/css.js"></script>
     <script>
         loadCSS(1);
     </script>
@@ -19,6 +19,10 @@
 	require_once '../db/dbconfig.php';
 	require_once '../db/tablesconfig.php';
     require_once '../controllers/ssl.php';
+    session_set_cookie_params([
+		'httponly' => true,
+		'samesite' => 'strict',
+	]);
     session_start();
 
     class VoterData
