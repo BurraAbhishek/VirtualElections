@@ -23,8 +23,8 @@ Please check the [wiki](https://github.com/burraabhishek/virtualelections/wiki) 
     <li>
     XSS
     <ul>
-      <li> Status: Currently vulnerable to DOM-based XSS in <a href="https://github.com/BurraAbhishek/VirtualElections/blob/main/src/election_time/voter_login.php">the voting module</a> </li>
-      <li> Testing tool used: <a href="https://sqlmap.org">sqlmap</a> </li>
+      <li> Status: Secured </li>
+      <li> Testing tool used: <a href="https://www.zaproxy.org/">OWASP ZAP</a> </li>
     </ul>
   </li>
     <li>
