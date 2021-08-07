@@ -4,7 +4,7 @@
 
 <img src="https://github.com/BurraAbhishek/VirtualElections/blob/main/screenshots/main_menu_1_darkmode.png" alt="Main menu" title="This site comes with a light and dark theme built-in by default, this screenshot shows the dark theme.">
 
-A free, adless and open-source voting platform to conduct elections remotely. 
+Forever free, adless and open-source voting platform to conduct elections remotely. 
 
 This website is written in [PHP](https://www.php.net/). HTML is used for templating, [using CSS for styling](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/css). JavaScript is used for client-side validations, [toggling between light and dark mode](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/controllers/css.js) and [showing results](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/vote_counting/results.php). An SQL database is used in this application. Connection to the database is handled using [PHP Data Objects](https://www.php.net/manual/en/book.pdo.php).
 
@@ -60,4 +60,5 @@ Files | Author(s) | License
 --- | --- | ---
 [/src/db/config/dbconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/dbconfig.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 [/src/db/config/tablesconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/tablesconfig.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+[/src/db/controllers/ssl.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/controllers/ssl.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | Public Domain
 [All files in /src/public/images/](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/public/images) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Creative Commons CC0 License](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
