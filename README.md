@@ -62,3 +62,5 @@ Files | Author(s) | License
 [/src/db/config/tablesconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/tablesconfig.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 [/src/db/controllers/ssl.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/controllers/ssl.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | Public Domain
 [All files in /src/public/images/](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/public/images) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Creative Commons CC0 License](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
+
+For the reason behind switching from Apache License to GNU AGPL, see the [repository FAQ](https://github.com/BurraAbhishek/VirtualElections/blob/main/FAQ.md)
