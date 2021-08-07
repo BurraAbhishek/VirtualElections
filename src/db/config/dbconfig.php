@@ -16,8 +16,9 @@
 	 * 		<li> If you are using procedural mysqli, replace each line of the code in each function as required </li>
 	 * 		<li> The security of the SQL queries depends on the value of the above properties. </li>
 	 * </ul>
-	 * This class can be used in any web application.
+	 * This class can be used in any application.
 	 *
+	 * @author Burra Abhishek
 	 * @license Apache License, Version 2.0
 	 * 
 	 */
@@ -37,7 +38,7 @@
 				$this->conn = null;
 				echo "Database $this->dbname created successfully.<br>";
 			} catch(Exception $e) {
-				echo 'Error: Couldn\'t create the database';
+				throw new Exception("Couldn't create the database");
 			}
 		}
 		public function openConnection() {

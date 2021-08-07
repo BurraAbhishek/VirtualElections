@@ -4,12 +4,12 @@
      * 
      * In each array:
      * <ul>
-         *      <li> "table" maps to the name of the table which is created. </li>
-         *      <li> "id" maps to a unique identification parameter </li>
-         *      <li> passwords have plaintext values. These are hashed and sent to the database. </li>
-         *      <li> The rest of the keys are self-explanatory. </li>
-         * </ul>
-         * 
+     *      <li> "table" maps to the name of the table which is created. </li>
+     *      <li> "id" maps to a unique identification parameter </li>
+     *      <li> passwords have plaintext values. These are hashed and sent to the database. </li>
+     *      <li> The rest of the keys are self-explanatory. </li>
+     * </ul>
+     * 
      * @author Burra Abhishek
      * @license Apache License, Version 2.0
      * 
