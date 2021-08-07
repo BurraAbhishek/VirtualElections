@@ -54,6 +54,10 @@ NOTE: It is recommended to use HTTPS and encrypt all traffic while deploying thi
 
 ## LICENSE
 
-This repository is licensed under the [Apache License, Version 2.0](https://github.com/BurraAbhishek/VirtualElections/blob/main/LICENSE), unless otherwise mentioned.
+This repository is licensed under the [GNU Affero General Public License 3](https://github.com/BurraAbhishek/VirtualElections/blob/main/LICENSE) or any later version at your choice with some exceptions, all of which are free:
 
-This repository currently does not contain any product names, service names or trade names. There are no trademarks, except if clearly mentioned as trademarks.
+Files | Author(s) | License
+--- | --- | ---
+[/src/db/config/dbconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/dbconfig.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+[/src/db/config/tablesconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/tablesconfig.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+[All files in /src/public/images/](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/public/images) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Creative Commons CC0 License](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
