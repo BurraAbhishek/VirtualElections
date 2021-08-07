@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Virtual Election</title>
+    <script src="../controllers/css.js"></script>
+    <script>
+        loadCSS(2);
+    </script>
+    <style>
+        a {
+            text-decoration: none;
+            font-size: 1em;
+            color: #FFFFFF;
+        }
+
+        p1 {
+            padding: 1% 1%;
+        }
+
+        .flexbar {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            padding: 0.5% 0.5%;
+            flex-grow: 1;
+        }
+
+        .flex-links {
+            display: flex;
+            flex-grow: 1;
+            background-color: inherit;
+            color: #FFFFFF;
+            font-size: 1em;
+            padding: 0;
+            margin: 0;
+            width: initial;
+        }
+
+        .text-padded {
+            padding: 0.5% 0.5%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .flexbar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="appbar">Virtual Election Portal</header>
+    <h2>
+        <div class="flexbar">
+            <a href="oldhomepage.html" class="flex-links"> Home </a>
+            <a href="../../registration_voter/registration.php" target="_blank" class="flex-links"> Voter
+                Registration </a>
+            <a href="../../registration_party/registration.php" target="_blank" class="flex-links"> Political
+                Party Registration </a>
+            <a href="../../election_time/voter_login.php" target="_blank" class="flex-links"> Cast Vote </a>
+            <a href="../../vote_counting/results.php" target="_blank" class="flex-links"> Results </a>
+        </div>
+    </h2>
+    <div id="mainbody" class="mainbody">
+        <!-- This div object describes your tool, so customize it as much as you want! -->
+        <h2>About this tool</h2>
+        <div class="text-padded">
+            <p1>Virtual Elections can be conducted officially by the Election Commission at times when an infectious
+                disease spreads easily among the population, causing epidemics and pandemics. During public health
+                crises like SARS, Ebola, COVID-19 etc. stay-at-home orders are implemented to protect the general
+                public. This tool helps you to vote in the elections from the comforts of your home without having to
+                take the risk of visiting the election booth, crowding and spreading any infectious disease.</p1>
+        </div>
+        <h2>Is this official?</h2>
+        <div class="text-padded">
+            <p1>Yes, you can use this tool to conduct elections. Any national-level, state-level or district-level
+                elections are conducted by their respective Election Commissions. All other elections can be officially
+                conducted by anyone.</p1>
+        </div>
+        <h2>What about the data which is sent?</h2>
+        <div class="text-padded">
+            <p1>Please contact the agency conducting the elections.</p1>
+        </div>
+    </div>
+</body>
+
+</html>
