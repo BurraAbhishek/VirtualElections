@@ -33,7 +33,6 @@
             text-align: center;
             font-size: 1.2em;
             color: inherit;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
         }
         button {
             font-size: 0.7em;

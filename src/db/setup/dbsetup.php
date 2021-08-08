@@ -18,7 +18,6 @@
         .text-padded {
             padding: 1% 1%;
             font-size: 1.4em;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Calibri", "roboto", "helvetica", "arial", sans-serif;
         }
     </style>
 </head>

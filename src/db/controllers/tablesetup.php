@@ -30,7 +30,7 @@
                 $sqlCreate->execute();
                 echo 'Admin table structure created.<br>';
                 $sqlAlter = $c1->prepare("ALTER TABLE `$table` ADD PRIMARY KEY (`$i`);");
-                $sqlAlter ->execute();
+                $sqlAlter->execute();
                 echo 'Admin table created.<br>';
                 $sqlInsert = $c1->prepare("INSERT INTO $table ($i, $v, $p, $e, $r, $pwd) VALUES (:username, 0, 0, 0, 0, :pwd)");
                 $sqlInsert->bindParam(':username', $username);

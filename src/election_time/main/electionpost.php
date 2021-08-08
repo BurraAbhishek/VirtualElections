@@ -34,7 +34,6 @@
             text-align: center;
             font-size: 1em;
             color: inherit;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
         }
         #myinput {
             font-size: 1.5em;
