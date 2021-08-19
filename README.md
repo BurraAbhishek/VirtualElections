@@ -63,4 +63,7 @@ Files | Author(s) | License
 [/src/db/controllers/ssl.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/controllers/ssl.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | Public Domain
 [All files in /src/public/images/](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/public/images) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Creative Commons CC0 License](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
 
-For the reason behind switching from Apache License to GNU AGPL, see the [repository FAQ](https://github.com/BurraAbhishek/VirtualElections/blob/main/FAQ.md)
+For the reason behind switching from Apache License to GNU AGPL, see the [repository FAQ](https://github.com/BurraAbhishek/VirtualElections/blob/main/FAQ.md).
+
+For security reasons, some exceptions have been provided for disclosing the source code:
+- In [/src/db/config/dbconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/dbconfig.php), you don't have to disclose any changes to the database username and password. That change need not be stated. If you still want to state that change, you can simply add `Changed database username and password for security reasons`.
