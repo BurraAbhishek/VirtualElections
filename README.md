@@ -34,13 +34,6 @@ Please check the [wiki](https://github.com/burraabhishek/virtualelections/wiki) 
       <li> Testing tool used: <a href="https://www.zaproxy.org/">OWASP ZAP</a> </li>
     </ul>
   </li>
-  <li>
-    Spam
-    <ul>
-      <li> Status: Vulnerable, below solution planned </li>
-      <li> Proposed solution: hCaptcha (depends on the outcome of this <a href="https://github.com/ornicar/lila/issues/9438">issue</a>, since this elections repository does not allow non-free dependencies.) </li>
-    </ul>
-  </li>
 </ul>
 
 In addition to this, it is recommended to use an identity verification method while conducting elections. There are several constraints to implementing an identity verification and authentication method by means of writing code:
