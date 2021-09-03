@@ -8,10 +8,10 @@ function loadCSS(n) {
     var s = document.createElement("link");
     s.rel = "stylesheet";
     s.setAttribute("type", "text/css");
-    if(typeof(Storage) !== "undefined") {
-        if(localStorage.getItem(colorModeTitle) == "Default") {
+    if (typeof Storage !== "undefined") {
+        if (localStorage.getItem(colorModeTitle) == "Default") {
             s.href = getFileURL("public/css/virtualelection.css", n);
-        } else if(localStorage.getItem(colorModeTitle) == "Dark") {
+        } else if (localStorage.getItem(colorModeTitle) == "Dark") {
             s.href = getFileURL("public/css/virtualelection_darkmode.css", n);
         } else {
             s.href = loadCSSByTime()["href"];
@@ -26,23 +26,23 @@ function loadCSS(n) {
 function loadCSSByTime(n) {
     var a;
     var d = new Date();
-    if(d.getHours() >= 6 && d.getHours() < 18){
+    if (d.getHours() >= 6 && d.getHours() < 18) {
         a = {
-            "mode": "Default",
-            "href": getFileURL("public/css/virtualelection.css", n)
-        }
+            mode: "Default",
+            href: getFileURL("public/css/virtualelection.css", n),
+        };
     } else {
         a = {
-            "mode": "Dark",
-            "href": getFileURL("public/css/virtualelection_darkmode.css", n)
-        }
+            mode: "Dark",
+            href: getFileURL("public/css/virtualelection_darkmode.css", n),
+        };
     }
     return a;
 }
 
 function getFileURL(url, parents) {
     var path = "";
-    for(var i = 0; i < parents; i++) {
+    for (var i = 0; i < parents; i++) {
         path += "../";
     }
     path += url;
