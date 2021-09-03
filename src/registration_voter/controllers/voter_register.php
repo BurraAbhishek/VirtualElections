@@ -10,7 +10,7 @@
         $dbconn = new Connection();
         $conn = $dbconn->openConnection();
     } catch (Exception $e) {
-        header('location: ../../public/oops/403.html');
+        header("Location: ../status/registration_failed.html");
     }
 
 	$tables = new Table();
@@ -30,14 +30,28 @@
 			if(($_POST['cpd1']) != ($_POST['cpd2'])) {
 				header("Location: ../status/passwordnotconfirmed.html");
 			} else {
-				$cname = $crypto->encrypt(validateName(validateDatatype($_POST['cname'], 'string')));
-				$cdob = $crypto->encrypt(validateDatatype($_POST['cdob'], 'ANY'));
-				$citype = $crypto->encrypt(validateName(validateDatatype($_POST['citype'], 'string')));
-				$cidno = $crypto->encrypt(validateName(validateDatatype($_POST['cidno'], 'string')));
-				$cgender = $crypto->encrypt(validateName(validateDatatype($_POST['cgender'], 'string')));
+				$cname = $crypto->encrypt(validateName(
+					validateDatatype($_POST['cname'], 'string'))
+				);
+				$cdob = $crypto->encrypt(
+					validateDatatype($_POST['cdob'], 'ANY')
+				);
+				$citype = $crypto->encrypt(validateName(
+					validateDatatype($_POST['citype'], 'string'))
+				);
+				$cidno = $crypto->encrypt(validateName(
+					validateDatatype($_POST['cidno'], 'string'))
+				);
+				$cgender = $crypto->encrypt(validateName(
+					validateDatatype($_POST['cgender'], 'string'))
+				);
 				$cpd = validateDatatype($_POST['cpd1'], 'ANY');
 				$cpd1 = password_hash($cpd, PASSWORD_DEFAULT);
-				$sql = $conn->prepare("INSERT INTO $voter ($voter_name, $dob, $idno, $idproof, $gender, $password) values (:cname,:cdob,:cidno,:citype,:cgender,:cpd)");
+				$sql = $conn->prepare(
+					"INSERT INTO 
+					$voter ($voter_name, $dob, $idno, $idproof, $gender, $password) 
+					values (:cname,:cdob,:cidno,:citype,:cgender,:cpd)"
+				);
 				$sql->bindParam(':cname', $cname, PDO::PARAM_STR, 256);
 				$sql->bindParam(':cdob', $cdob);
 				$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 256);

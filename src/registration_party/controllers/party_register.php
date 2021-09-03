@@ -10,7 +10,7 @@
 		$dbconn = new Connection();
 		$conn = $dbconn->openConnection();
 	} catch (Exception $e) {
-		header('location: ../../public/oops/403.html');
+		header("Location: ../status/registration_failed.html");
 	}
 
 	$tables = new Table();
@@ -24,11 +24,23 @@
 
 	try {
 		if(isset($_POST['save'])){
-			$pname = $crypto->encrypt(validateName(validateDatatype($_POST['pname'], 'string')));
-			$cname = $crypto->encrypt(validateName(validateDatatype($_POST['cname'], 'string')));
-			$citype =  $crypto->encrypt(validateName(validateDatatype($_POST['citype'], 'string')));
-			$cidno =  $crypto->encrypt(validateID(validateDatatype($_POST['cidno'], 'string')));
-			$sql = $conn->prepare("INSERT INTO $party_table ($party_name, $candidate, $idno, $idproof) values (:pname,:cname,:cidno, :citype)");
+			$pname = $crypto->encrypt(
+				validateName(validateDatatype($_POST['pname'], 'string'))
+			);
+			$cname = $crypto->encrypt(validateName(
+				validateDatatype($_POST['cname'], 'string')
+			));
+			$citype =  $crypto->encrypt(validateName(
+				validateDatatype($_POST['citype'], 'string')
+			));
+			$cidno =  $crypto->encrypt(validateID(
+				validateDatatype($_POST['cidno'], 'string')
+			));
+			$sql = $conn->prepare(
+				"INSERT INTO 
+				$party_table ($party_name, $candidate, $idno, $idproof) 
+				values (:pname,:cname,:cidno, :citype)"
+			);
 			$sql->bindParam(':pname', $pname, PDO::PARAM_STR, 512);
 			$sql->bindParam(':cname', $cname, PDO::PARAM_STR, 512);
 			$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 256);

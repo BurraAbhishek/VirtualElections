@@ -31,7 +31,11 @@
 					$pwd = $_POST['cpd1'];
 					$citype = $s->encrypt($_POST['citype']);
 					$cidno = $s->encrypt($_POST['cidno']);
-					$sql = $conn->prepare("SELECT * FROM $voter WHERE $idproof = :citype AND $idno = :cidno");
+					$sql = $conn->prepare(
+						"SELECT * FROM $voter 
+						WHERE $idproof = :citype 
+						AND $idno = :cidno"
+					);
 					$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 128);
 					$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 256);
 					$sql->execute();
@@ -41,7 +45,11 @@
 						$u2 = $u[$idno];
 						$u3 = $u[$password];
 					}
-					if(($citype == $u1) && ($cidno == $u2) && (password_verify($pwd, $u3))) {
+					if(
+						($citype == $u1) 
+						&& ($cidno == $u2) 
+						&& (password_verify($pwd, $u3))
+					) {
 						$_SESSION["voterid"] = $u[$voter_id];
 						$_SESSION["votername"] = $s->decrypt($u[$voter_name]);
 						$_SESSION["alt"] = $_POST["token"];

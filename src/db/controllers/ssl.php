@@ -6,13 +6,17 @@
 	 * <ul>
 	 * 		<li> $method: The encryption/decryption algorithm used. </li>
 	 * 		<li> $passphrase: The passphrase. </li>
-	 * 		<li> $options: Bitwise disjunction of flags OPENSSL_RAW_DATA and OPENSSL_ZERO_PADDING </li>
-	 * 		<li> $iv: Refers to the initialization vector. Should not be null. </li>
+	 * 		<li> $options: Bitwise disjunction of flags 
+     *               OPENSSL_RAW_DATA and OPENSSL_ZERO_PADDING </li>
+	 * 		<li> $iv: Refers to the initialization vector. 
+     *               Should not be null. </li>
 	 * </ul>
 	 * NOTE:
 	 * <ul>
-	 * 		<li> Please change the passphrase and initialization vector as soon as possible. </li>
-	 * 		<li> Do not change any of these values once the application is deployed </li>
+	 * 		<li> Please change the passphrase and initialization vector 
+     *               as soon as possible. </li>
+	 * 		<li> Do not change any of these values 
+     *               once the application is deployed </li>
 	 * </ul>
      * 
 	 * This class can be used in any application.

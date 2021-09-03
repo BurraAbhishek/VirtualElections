@@ -43,26 +43,34 @@
                         <td><input type="text" name="cname" id="cname" required></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><abbr title="Type of ID Proof, default is passport"
-                                style="text-decoration: none;">Identification type: </abbr></td>
-                        <td><input type="text" name="citype" id="citype" value="Passport" required></td>
+                        <td style="text-align: right;">
+                        <abbr title="Type of ID Proof, default is passport"
+                                style="text-decoration: none;">
+                                Identification type: </abbr></td>
+                        <td><input type="text" name="citype" 
+                        id="citype" value="Passport" required></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;">Passport / ID Number: </td>
-                        <td><input type="text" name="cidno" id="cidno" required></td>
+                        <td style="text-align: right;">
+                        Passport / ID Number: </td>
+                        <td><input type="text" name="cidno" id="cidno" 
+                        required></td>
                     </tr>
                     <tr>
                         <td style="text-align: right;">Enter Password: </td>
-                        <td><input type="password" name="cpd1" id="cpd1" required></td>
+                        <td><input type="password" name="cpd1" id="cpd1" 
+                        required></td>
                     </tr>
                     <?php
-                        echo '<tr style="display: none"><td>&nbsp;</td><td><input type="password" name="token" id="token" value="';
+                        echo '<tr style="display: none"><td>&nbsp;</td>'; 
+                        echo '<td><input type="password" name="token" id="token" value="';
                         echo $token;
                         echo '"></td>
                     </tr>';
                     ?>
                     <tr>
-                        <td colspan=2 style="text-align: center;"><input class="submitbtn" type="submit" value="SUBMIT"
+                        <td colspan=2 style="text-align: center;">
+                        <input class="submitbtn" type="submit" value="SUBMIT"
                                 name="submit"></td>
                     </tr>
                 </table>

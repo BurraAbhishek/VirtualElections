@@ -30,7 +30,9 @@
             $id_default = $admin["id_default"];
             $dbconn = new Connection();
             $conn = $dbconn->openConnection();
-            $sql = $conn->prepare("SELECT * FROM $admin_table WHERE $admin_id = :a");
+            $sql = $conn->prepare(
+                "SELECT * FROM $admin_table WHERE $admin_id = :a"
+            );
             $sql->bindParam(':a', $id_default);
             $sql->execute();
             $result = $sql->fetchAll();
@@ -53,7 +55,9 @@
                 $admin_table = $admin["table"];
                 $admin_id = $admin["id"];
                 $id_default = $admin["id_default"];
-                $sql = $conn->prepare("UPDATE $admin_table SET $attr = :val WHERE $admin_id = :a");
+                $sql = $conn->prepare(
+                    "UPDATE $admin_table SET $attr = :val WHERE $admin_id = :a"
+                );
                 $sql->bindParam(':val', $v, PDO::PARAM_INT);
                 $sql->bindParam(':a', $id_default);
                 $sql->execute();
@@ -72,7 +76,8 @@
             try {
                 $this->getFromDatabase();
             } catch(Exception $e) {
-                echo "<h2> Please create a new instance of the election database before proceeding further </h2>";
+                echo "<h2> Please create a new instance of the ";
+                echo "election database before proceeding further </h2>";
             }
         }
         public function updateAll($v, $p, $e, $r) {

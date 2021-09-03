@@ -45,11 +45,21 @@
                 if($step == 0) {
                     $data = $_SESSION["data"];
                     $voterid = $data["voterid"];
-                    $cname = $crypto->encrypt(validateName(validateDatatype($_POST['cname'], 'string')));
-                    $cdob = $crypto->encrypt(validateDatatype($_POST['cdob'], 'ANY'));
-                    $citype = $crypto->encrypt(validateName(validateDatatype($_POST['citype'], 'string')));
-                    $cidno = $crypto->encrypt(validateName(validateDatatype($_POST['cidno'], 'string')));
-                    $cgender = $crypto->encrypt(validateName(validateDatatype($_POST['cgender'], 'string')));
+                    $cname = $crypto->encrypt(validateName(
+                        validateDatatype($_POST['cname'], 'string')
+                    ));
+                    $cdob = $crypto->encrypt(
+                        validateDatatype($_POST['cdob'], 'ANY')
+                    );
+                    $citype = $crypto->encrypt(validateName(
+                        validateDatatype($_POST['citype'], 'string'))
+                    );
+                    $cidno = $crypto->encrypt(validateName(
+                        validateDatatype($_POST['cidno'], 'string')
+                    ));
+                    $cgender = $crypto->encrypt(validateName(
+                        validateDatatype($_POST['cgender'], 'string')
+                    ));
                     $cpd = validateDatatype($_POST['cpd1'], 'ANY');
                     $cpd1 = password_hash($cpd, PASSWORD_DEFAULT);
                     $step = 1;
@@ -66,7 +76,11 @@
                 } else {
                     $name = $crypto->encrypt($data["name"]);
                     if(strcmp($cname, $name) != 0) {
-                        $sql1 = $conn->prepare("UPDATE $voter SET $voter_name = :cname WHERE $voter_id = :voterid");
+                        $sql1 = $conn->prepare(
+                            "UPDATE $voter 
+                            SET $voter_name = :cname 
+                            WHERE $voter_id = :voterid"
+                        );
                         $sql1->bindParam(':cname', $cname, PDO::PARAM_STR, 256);
                         $sql1->bindParam(':voterid', $voterid, PDO::PARAM_INT);
                         $sql1->execute();
@@ -83,7 +97,11 @@
                 } else {
                     $dob = $crypto->encrypt($data["dob"]);
                     if($cdob != $dob) {
-                        $sql2 = $conn->prepare("UPDATE $voter SET $voter_dob = :cdob WHERE $voter_id = :voterid");
+                        $sql2 = $conn->prepare(
+                            "UPDATE $voter 
+                            SET $voter_dob = :cdob 
+                            WHERE $voter_id = :voterid"
+                        );
                         $sql2->bindParam(':cdob', $cdob);
                         $sql2->bindParam(':voterid', $voterid, PDO::PARAM_INT);
                         $sql2->execute();
@@ -100,7 +118,11 @@
                 } else {
                     $idtype = $crypto->encrypt($data["idtype"]);
                     if(strcmp($citype, $idtype) != 0) {
-                        $sql3 = $conn->prepare("UPDATE $voter SET $voter_idproof = :citype WHERE $voter_id = :voterid");
+                        $sql3 = $conn->prepare(
+                            "UPDATE $voter 
+                            SET $voter_idproof = :citype 
+                            WHERE $voter_id = :voterid"
+                        );
                         $sql3->bindParam(':citype', $citype, PDO::PARAM_STR, 128);
                         $sql3->bindParam(':voterid', $voterid, PDO::PARAM_INT);
                         $sql3->execute();
@@ -117,7 +139,11 @@
                 } else {
                     $idno = $crypto->encrypt($data["idno"]);
                     if(strcmp($cidno, $idno) != 0) {
-                        $sql4 = $conn->prepare("UPDATE $voter SET $voter_idno = :cidno WHERE $voter_id = :voterid");
+                        $sql4 = $conn->prepare(
+                            "UPDATE $voter 
+                            SET $voter_idno = :cidno 
+                            WHERE $voter_id = :voterid"
+                        );
                         $sql4->bindParam(':cidno', $cidno, PDO::PARAM_STR, 256);
                         $sql4->bindParam(':voterid', $voterid, PDO::PARAM_INT);
                         $sql4->execute();
@@ -134,7 +160,11 @@
                 } else {
                     $gender = $crypto->encrypt($data["gender"]);
                     if(strcmp($cgender, $gender) != 0) {
-                        $sql5 = $conn->prepare("UPDATE $voter SET $voter_gender = :cgender WHERE $voter_id = :voterid");
+                        $sql5 = $conn->prepare(
+                            "UPDATE $voter 
+                            SET $voter_gender = :cgender 
+                            WHERE $voter_id = :voterid"
+                        );
                         $sql5->bindParam(':cgender', $cgender, PDO::PARAM_STR, 256);
                         $sql5->bindParam(':voterid', $voterid, PDO::PARAM_INT);
                         $sql5->execute();
@@ -151,7 +181,10 @@
                 } else {
                     $pwd = $data["password"];
                     if(strcmp($cpd, $pwd) != 0) {
-                        $sql6 = $conn->prepare("UPDATE $voter SET $password = :cpd WHERE $voter_id = :voterid");
+                        $sql6 = $conn->prepare(
+                            "UPDATE $voter 
+                            SET $password = :cpd 
+                            WHERE $voter_id = :voterid");
                         $sql6->bindParam(':cpd', $cpd1);
                         $sql6->bindParam(':voterid', $voterid, PDO::PARAM_INT);
                         $sql6->execute();

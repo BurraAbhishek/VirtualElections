@@ -72,7 +72,8 @@
             <tr>
                 <td class="rightalign">Voter Registration: </td>
                 <td>
-                    <select name="voter" id="voter" onchange="javascript:changeToggle('voter');">
+                    <select name="voter" id="voter" 
+                    onchange="javascript:changeToggle('voter');">
                         <option id="voter0" value="0">Enabled</option>
                         <option id="voter1" value="1">Disabled</option>
                     </select>
@@ -81,7 +82,8 @@
             <tr>
                 <td class="rightalign">Party Registration: </td>
                 <td>
-                    <select name="party" id="party" onchange="javascript:changeToggle('party');">
+                    <select name="party" id="party" 
+                    onchange="javascript:changeToggle('party');">
                         <option id="party0" value="0">Enabled</option>
                         <option id="party1" value="1">Disabled</option>
                     </select>
@@ -90,7 +92,8 @@
             <tr>
                 <td class="rightalign">Voting: </td>
                 <td>
-                    <select name="votecast" id="votecast" onchange="javascript:changeToggle('votecast');">
+                    <select name="votecast" id="votecast" 
+                    onchange="javascript:changeToggle('votecast');">
                         <option id="votecast0" value="0">Enabled</option>
                         <option id="votecast1" value="1">Disabled</option>
                     </select>
@@ -99,7 +102,8 @@
             <tr>
                 <td class="rightalign">Results: </td>
                 <td>
-                    <select name="results" id="results"  onchange="javascript:changeToggle('results');">
+                    <select name="results" id="results"  
+                    onchange="javascript:changeToggle('results');">
                         <option id="results0" value="0">Enabled</option>
                         <option id="results1" value="1">Disabled</option>
                     </select>
@@ -107,12 +111,15 @@
             </tr>
             <tr>
                 <td colspan=2 style="text-align: center;">
-                    <span id="ifuptodate">Status: Changes saved to database</span>
+                    <span id="ifuptodate">
+                        Status: Changes saved to database
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td colspan=2 style="text-align: center;">
-                    <input class="submitbtn" type="submit" value="Save Changes" name="save">
+                    <input class="submitbtn" type="submit" 
+                    value="Save Changes" name="save">
                 </td>
             </tr>
         </table>
@@ -140,7 +147,8 @@
                     document.getElementById(c + i).removeAttribute("selected");
                 }
             }
-            document.getElementById("ifuptodate").innerHTML = "Status: Changes not saved to database";
+            document.getElementById("ifuptodate").innerHTML 
+            = "Status: Changes not saved to database";
         }
     </script>
 </body>

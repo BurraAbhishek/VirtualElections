@@ -124,7 +124,11 @@
         for (var i = 0; i < q.length; i++) {
             var d = "";
             d += i;
-            if (typeof (h[d]) === "undefined" || typeof (h[d]) === null) { u1[i] = 0; } else { u1[i] = h[d]; }
+            if (typeof (h[d]) === "undefined" || typeof (h[d]) === null) {
+                u1[i] = 0;
+            } else {
+                u1[i] = h[d];
+            }
         }
 
         var a = [];

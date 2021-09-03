@@ -14,8 +14,14 @@
     $admin_id = $admin["id"];
     $id_default = $admin["id_default"];
     $password_attr = $admin["password"];
-    $password_default = password_hash($admin["password_default"], PASSWORD_DEFAULT);
-    $sql = $conn->prepare("UPDATE $admin_table SET $admin_id = :adminid, $password_attr = :hashpw");
+    $password_default = password_hash(
+        $admin["password_default"], 
+        PASSWORD_DEFAULT
+    );
+    $sql = $conn->prepare(
+        "UPDATE $admin_table 
+        SET $admin_id = :adminid, $password_attr = :hashpw"
+    );
     $sql->bindParam(':adminid', $id_default);
     $sql->bindParam(':hashpw', $password_default);
     $sql->execute();

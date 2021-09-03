@@ -30,7 +30,9 @@
 
 	try {
 		$voter_id = $_SESSION["voterid"];
-		$sql = $conn->prepare("SELECT * FROM $votescast WHERE $voterid = :voter_id");
+		$sql = $conn->prepare(
+			"SELECT * FROM $votescast WHERE $voterid = :voter_id"
+		);
 		$sql->execute(['voter_id' => $voter_id]);
 		$result = $sql->fetchAll();
 		if(count($result)==0){
@@ -40,7 +42,11 @@
 			$a = [];
 			foreach($r as $s){
 				$b = [];
-				array_push($b,$show->decrypt($s[$partyname]),$show->decrypt($s[$candidate]));
+				array_push(
+					$b,
+					$show->decrypt($s[$partyname]),
+					$show->decrypt($s[$candidate])
+				);
 				array_push($a,$b);
 			}
 			$c = json_encode($a);
@@ -50,8 +56,8 @@
 			echo '));</script>';
 			echo '<script>sessionStorage.setItem("votername","';
 			echo "$v";
-			echo '");</script>';
-			echo '<script>window.location.replace("../main/election.php");</script>';
+			echo '");</script><script>';
+			echo 'window.location.replace("../main/election.php");</script>';
 		} else {
 			session_destroy();
 			header('location: ../status/votecomplete.html');

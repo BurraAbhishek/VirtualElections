@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="../../public/controllers/css.js"></script>
+        <script>
+            loadCSS(2);
+        </script>
+        <title>Voting completed</title>
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="../../public/controllers/css.js"></script>
-    <script>
-        loadCSS(2);
-    </script>
-    <title>Voting completed</title>
-</head>
-
-<body>
-    <header class="appbar">
-        Voting completed!
-    </header>
-    <div id="mainbody" class="mainbody">
-        <h1 class="center-text">THANK YOU FOR VOTING!</h1>
-        <h1>It is strongly recommended that you close this browser window for security reasons.</h1>
-    </div>
-    <script>
-        if (typeof (Storage) !== "undefined") {
-            if (sessionStorage.votername) { sessionStorage.removeItem("votername"); }
-            if (sessionStorage.voted) { sessionStorage.removeItem("voted"); }
-            if (sessionStorage.parties) { sessionStorage.removeItem("parties"); }
-        }
-    </script>
-</body>
-
+    <body>
+        <header class="appbar">Voting completed!</header>
+        <div id="mainbody" class="mainbody">
+            <h1 class="center-text">THANK YOU FOR VOTING!</h1>
+            <h1>
+                It is strongly recommended that you close this browser window
+                for security reasons.
+            </h1>
+        </div>
+        <script>
+            if (typeof Storage !== "undefined") {
+                if (sessionStorage.votername) {
+                    sessionStorage.removeItem("votername");
+                }
+                if (sessionStorage.voted) {
+                    sessionStorage.removeItem("voted");
+                }
+                if (sessionStorage.parties) {
+                    sessionStorage.removeItem("parties");
+                }
+            }
+        </script>
+    </body>
 </html>

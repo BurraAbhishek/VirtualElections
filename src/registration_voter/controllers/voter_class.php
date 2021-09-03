@@ -53,7 +53,11 @@
                 $idproof = $voter_table["idproof_type"];
                 $gender = $voter_table["voter_gender"];
                 $password = $voter_table["password"];
-                $sql = $conn->prepare("SELECT * FROM $voter WHERE $idproof = :citype AND $idno = :cidno");
+                $sql = $conn->prepare(
+                    "SELECT * FROM $voter 
+                    WHERE $idproof = :citype 
+                    AND $idno = :cidno"
+                );
                 $sql->bindParam(':citype', $citype, PDO::PARAM_STR, 20);
                 $sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 50);
                 $sql->execute();
@@ -63,7 +67,11 @@
                     $u2 = $u[$idno];
                     $u3 = $u[$password];
                 }
-                if(($citype == $u1) && ($cidno == $u2) && (password_verify($pwd, $u3))) {
+                if(
+                    ($citype == $u1) 
+                    && ($cidno == $u2) 
+                    && (password_verify($pwd, $u3))
+                ) {
                    $this->voterid = $userid[0][$voter_id];
                    $this->name = $s->decrypt($userid[0][$voter_name]);
                    $this->dob = $s->decrypt($userid[0][$dob]);
@@ -90,14 +98,17 @@
         }
         public function showInterface() {
             echo '<div id="mainbody" class="mainbody">
-            <form action="update_voter.php" method="post" onsubmit="javascript:return validateForm();">
+            <form action="update_voter.php" method="post" 
+            onsubmit="javascript:return validateForm();">
                 <p1>
                     <table style="width: 100%;">
                         <tr>
                             <td style="text-align: right;">Voter\'s Name: </td>
                             <td><input type="text" name="cname" id="cname" 
                             pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" 
-                            title="Maximum 100 characters. The following characters are prohibited: !|@#$%^&*[]{}<>;?~:\/=" 
+                            title="Maximum 100 characters. 
+                            The following characters are prohibited: 
+                            !|@#$%^&*[]{}<>;?~:\/=" 
                             value="';
                             echo "$this->name";
                             echo '" required></td>
@@ -110,7 +121,8 @@
                         </tr>
                         <tr>
                             <td style="text-align: right;">Gender: </td>
-                            <td><select name="cgender" id="cgender" onchange="javascript:changeToggle();">
+                            <td><select name="cgender" id="cgender" 
+                                onchange="javascript:changeToggle();">
                                     <option id="gender1" value="Male"';
                                     if($this->gender == "Male") {
                                         echo ' selected ';
@@ -129,24 +141,31 @@
                                 </select></td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;"><abbr title="Type of ID Proof, default is passport"
-                                    style="text-decoration: none;">Identification type: </abbr></td>
+                            <td style="text-align: right;">
+                                <abbr title="Type of ID Proof, default is passport"
+                                    style="text-decoration: none;">
+                                    Identification type: </abbr></td>
                             <td><input type="text" name="citype" id="citype" value="';
                             echo "$this->idtype";
-                            echo '" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" title="Maximum 20 characters. The following characters are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
+                            echo '" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" 
+                            title="Maximum 20 characters. The following characters 
+                            are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Passport / ID Number: </td>
                             <td><input type="text" name="cidno" id="cidno" 
                             pattern="^(?!^0+$)[a-zA-Z0-9]{3,50}$" 
-                            title="Only 3 to 50 characters. Only numbers, uppercase and lowercase. The sequence should not be all 0s." 
+                            title="Only 3 to 50 characters. 
+                            Only numbers, uppercase and lowercase. 
+                            The sequence should not be all 0s." 
                             value="';
                             echo "$this->idno";
                             echo '" required></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Enter Password: </td>
-                            <td><input type="password" name="cpd1" id="cpd1" required value="';
+                            <td><input type="password" name="cpd1" id="cpd1" 
+                                required value="';
                             echo "$this->password";
                             echo '"></td>
                         </tr>
@@ -155,12 +174,15 @@
                             <td><input type="password" name="cpd2" id="cpd2" value="';
                             echo "$this->password";
                             echo '"></td>
-                        </tr><tr style="display:none"><td colspan=2><input type="password" name="token" id="token" value="';
+                        </tr><tr style="display:none"><td colspan=2>
+                            <input type="password" name="token" id="token" value="';
                         $token = $_SESSION['alt'];
                         echo $token;
                         echo '">
                         </td></tr><tr>
-                            <td colspan=2 style="text-align: center;"><input class="submitbtn" type="submit" value="Update Details"
+                            <td colspan=2 style="text-align: center;">
+                                <input class="submitbtn" type="submit" 
+                                value="Update Details"
                                     name="save"></td>
                         </tr>
                     </table>
@@ -168,14 +190,20 @@
             </form>
         </div>';
         echo '<script>
-            document.getElementById("cgender1").value = document.getElementById("cgender").value;
+            document.getElementById("cgender1").value 
+            = document.getElementById("cgender").value;
             function changeToggle() {
                 for(var i = 1; i <= 3; i++) {
-                    if(document.getElementById("gender" + i).hasAttribute("selected")) {
-                        document.getElementById("gender" + i).removeAttribute("selected");
+                    if(document.getElementById(
+                        "gender" + i
+                    ).hasAttribute("selected")) {
+                        document.getElementById(
+                            "gender" + i
+                        ).removeAttribute("selected");
                     }
                 }
-                document.getElementById("cgender1").value = document.getElementById("cgender").value;
+                document.getElementById("cgender1").value 
+                = document.getElementById("cgender").value;
             }
         </script>';
         }

@@ -77,7 +77,9 @@
                 }
             }
             if($progresslevel == 3) {
-                echo 'Setup completed. <br>It is recommended that you close this browser window for security reasons.';
+                echo 'Setup completed.'; 
+                echo '<br>';
+                echo 'It is recommended that you close this browser window for security reasons.';
             }
         ?>
     </div>

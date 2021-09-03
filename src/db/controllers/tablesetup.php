@@ -18,7 +18,10 @@
                 $r = $t["results"];
                 $pwd = $t["password"];
                 $username = $t["id_default"];
-                $pwd_default = password_hash($t["password_default"], PASSWORD_DEFAULT);
+                $pwd_default = password_hash(
+                    $t["password_default"], 
+                    PASSWORD_DEFAULT
+                );
                 $sqlCreate = $c1->prepare("CREATE TABLE `$table` (
                     `$i` varchar(100) NOT NULL DEFAULT '$username',
                     `$v` int(11) NOT NULL DEFAULT 0,
@@ -29,16 +32,21 @@
                     );");
                 $sqlCreate->execute();
                 echo 'Admin table structure created.<br>';
-                $sqlAlter = $c1->prepare("ALTER TABLE `$table` ADD PRIMARY KEY (`$i`);");
+                $sqlAlter = $c1->prepare(
+                    "ALTER TABLE `$table` ADD PRIMARY KEY (`$i`);"
+                );
                 $sqlAlter->execute();
                 echo 'Admin table created.<br>';
-                $sqlInsert = $c1->prepare("INSERT INTO $table ($i, $v, $p, $e, $r, $pwd) VALUES (:username, 0, 0, 0, 0, :pwd)");
+                $sqlInsert = $c1->prepare(
+                    "INSERT INTO $table ($i, $v, $p, $e, $r, $pwd) 
+                    VALUES (:username, 0, 0, 0, 0, :pwd)"
+                );
                 $sqlInsert->bindParam(':username', $username);
                 $sqlInsert->bindParam(':pwd', $pwd_default);
                 $sqlInsert->execute();
                 echo 'Admin table is ready.<br>';
             } catch(Exception $e) {
-                echo 'The administration table either exists or is corrupted<br>';
+                echo 'The admin table either exists or is corrupted<br>';
             }
         }
 
@@ -96,9 +104,11 @@
                     `$p` int(11) NOT NULL DEFAULT 0
                     );");
                 $sqlCreate->execute();
-                $sqlAlter1 = $c3->prepare("ALTER TABLE `$table` ADD PRIMARY KEY (`$v`);");
+                $sqlAlter1 = $c3->prepare("ALTER TABLE `$table` 
+                    ADD PRIMARY KEY (`$v`);");
                 $sqlAlter1->execute();
-                $sqlAlter2 = $c3->prepare("ALTER TABLE `$table` ADD CONSTRAINT `election_ibfk_1` 
+                $sqlAlter2 = $c3->prepare("ALTER TABLE `$table` 
+                    ADD CONSTRAINT `election_ibfk_1` 
                     FOREIGN KEY (`$v`) 
                     REFERENCES `$votername` (`$voterid`);");
                 $sqlAlter2->execute();
