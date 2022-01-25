@@ -8,6 +8,8 @@ Forever free, adless and open-source voting platform to conduct elections remote
 
 This website is written in [PHP](https://www.php.net/). HTML is used for templating, [using CSS for styling](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/public/css). JavaScript is used for client-side validations, [toggling between light and dark mode](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/public/controllers/css.js) and [showing results](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/vote_counting/results.php). An SQL database is used in this application. Connection to the database is handled using [PHP Data Objects](https://www.php.net/manual/en/book.pdo.php).
 
+For the rewrite in Python (Django framework), see https://github.com/BurraAbhishek/VirtualElections_v2
+
 ## Development Environment
 Please check the [wiki](https://github.com/burraabhishek/virtualelections/wiki) of this repository to get started.
 
@@ -47,19 +49,12 @@ NOTE: It is recommended to use HTTPS and encrypt all traffic while deploying thi
 
 ## LICENSE
 
-This repository is licensed under the [GNU Affero General Public License 3](https://github.com/BurraAbhishek/VirtualElections/blob/main/LICENSE) or any later version at your choice with some exceptions, all of which are free:
+This repository is dual-licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) and the [GNU Affero General Public License 3](https://www.gnu.org/licenses/agpl-3.0.txt) or any later version at your choice.
+
+### External Resources
 
 Files | Author(s) | License
 --- | --- | ---
-[/src/db/config/dbconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/dbconfig.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-[/src/db/config/tablesconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/tablesconfig.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-[/src/db/controllers/ssl.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/controllers/ssl.php) | [Burra Abhishek](https://github.com/BurraAbhishek/) | Public Domain
-[All files in /src/public/images/](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/public/images) | [Burra Abhishek](https://github.com/BurraAbhishek/) | [Creative Commons CC0 License](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
 [Font Awesome v4.7 in public/fa](https://github.com/BurraAbhishek/VirtualElections/tree/main/src/public/fa) | [The Font Awesome Team](https://github.com/FortAwesome/Font-Awesome#team) | [CC-BY 4.0, SIL OFL 1.1, MIT](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
 Noto Sans in public/fonts | [Google](https://fonts.google.com/specimen/Noto+Sans) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 Roboto in public/fonts | [Christian Robertson](https://fonts.google.com/specimen/Roboto) | [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-For the reason behind switching from Apache License to GNU AGPL, see the [repository FAQ](https://github.com/BurraAbhishek/VirtualElections/blob/main/FAQ.md).
-
-For security reasons, some exceptions have been provided for disclosing the source code:
-- In [/src/db/config/dbconfig.php](https://github.com/BurraAbhishek/VirtualElections/blob/main/src/db/config/dbconfig.php), you don't have to disclose any changes to the database username and password. That change need not be stated. If you still want to state that change, you can simply add `Changed database username and password for security reasons`.
