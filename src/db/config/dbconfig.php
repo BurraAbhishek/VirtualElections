@@ -30,7 +30,7 @@
 	{
 		private $dbms = "mysql";
 		private $host = "localhost";
-		private $dbname = "virtualelection23";
+		private $dbname = "virtualelection";
 		private $username = "root";
 		private $password = "";
 		public $conn;
