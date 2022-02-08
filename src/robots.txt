@@ -1,0 +1,25 @@
+# Robots.txt page for this site
+#
+# As per the privacy policy, we
+# would not want to have any of
+# the personal details crawled,
+# please.
+#
+# Please do not crawl the admin
+# pages as there is no need to 
+# do so.
+#
+# Please do not crawl our 
+# database pages as there is
+# nothing of interest in it.
+#
+# You can crawl whatever is not 
+# disallowed, but please be 
+# reasonable in doing so.
+#
+User-agent: *
+Disallow: /admin/
+Disallow: /db/
+Disallow: /election_time/
+Disallow: /registration_party/
+Disallow: /registration_voter/
