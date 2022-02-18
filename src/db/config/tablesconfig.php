@@ -27,6 +27,20 @@
             "results" => "results",
             "password"=> "password"
         );
+        private $controlAttributes = array(
+            "table" => "controls",
+            "id" => "order",
+            "localize" => "allow_local",
+            "showprofile" => "show_profile",
+            "showviolations" => "show_tos_violation",
+            "mustvote" => "candidate_must_vote",
+            "voterage" => "voter_age_constraint",
+            "voteragemin" => "voter_age_min",
+            "voteragemax" => "voter_age_max",
+            "candidateage" => "candidate_age_constraint",
+            "candidateagemin" => "candidate_age_min",
+            "candidateagemax" => "candidate_age_max"
+        );
         private $electionAttributes = array(
             "table" => "election",
             "voter" => "voter_id",
@@ -52,6 +66,9 @@
         );
         public function getAdminStatus() {
             return $this->adminAttributes;
+        }
+        public function getControls() {
+            return $this->controlAttributes;
         }
         public function getVoterList() {
             return $this->voterAttributes;
