@@ -19,6 +19,7 @@
 	require_once '../../db/config/dbconfig.php';
 	require_once '../../db/config/tablesconfig.php';
     require_once '../../db/controllers/ssl.php';
+    require_once '../../db/config/idconfig.php';
 
     try {
         $conn = new Connection();
@@ -97,6 +98,8 @@
             }
         }
         public function showInterface() {
+            $id_proofs = new IDProof();
+            $ids_list = $id_proofs->get_options($selected=$this->idtype);
             echo '<div id="mainbody" class="mainbody">
             <form action="update_voter.php" method="post" 
             onsubmit="javascript:return validateForm();">
@@ -145,11 +148,8 @@
                                 <abbr title="Type of ID Proof, default is passport"
                                     style="text-decoration: none;">
                                     Identification type: </abbr></td>
-                            <td><input type="text" name="citype" id="citype" value="';
-                            echo "$this->idtype";
-                            echo '" pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+" 
-                            title="Maximum 20 characters. The following characters 
-                            are prohibited: !|@#$%^&*[]{}<>;?~:\/=" required></td>
+                            <td><select name="citype" id="citype">'.$ids_list.'</select>
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Passport / ID Number: </td>
