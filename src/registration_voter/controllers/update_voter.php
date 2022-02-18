@@ -3,7 +3,8 @@
 	require_once '../../db/config/dbconfig.php';
 	require_once '../../db/config/tablesconfig.php'; 
     require_once '../../db/controllers/ssl.php';
-    require_once '../../db/controllers/post_validate.php';  
+    require_once '../../db/controllers/post_validate.php';
+    require_once '../../db/config/idconfig.php';
 
     session_start();
 
@@ -28,6 +29,7 @@
             $password = $voter_table["password"];
         
             $crypto = new SecureData();
+            $id_validator = new IDProof();
         
             $step = -1;
         
@@ -51,8 +53,12 @@
                     $cdob = $crypto->encrypt(
                         validateDatatype($_POST['cdob'], 'ANY')
                     );
+                    $citype_unsafe = validateDatatype($_POST['citype'], 'string');
+                    if (!$id_validator->validate_idproof($citype_unsafe)) {
+                        throw new Exception("Invalid Identity proof");
+                    }
                     $citype = $crypto->encrypt(validateName(
-                        validateDatatype($_POST['citype'], 'string'))
+                        $citype_unsafe)
                     );
                     $cidno = $crypto->encrypt(validateName(
                         validateDatatype($_POST['cidno'], 'string')
@@ -82,7 +88,7 @@
                             WHERE $voter_id = :voterid"
                         );
                         $sql1->bindParam(':cname', $cname, PDO::PARAM_STR, 256);
-                        $sql1->bindParam(':voterid', $voterid, PDO::PARAM_INT);
+                        $sql1->bindParam(':voterid', $voterid, PDO::PARAM_STR, 12);
                         $sql1->execute();
                     }
                     $step = 2;
@@ -103,7 +109,7 @@
                             WHERE $voter_id = :voterid"
                         );
                         $sql2->bindParam(':cdob', $cdob);
-                        $sql2->bindParam(':voterid', $voterid, PDO::PARAM_INT);
+                        $sql2->bindParam(':voterid', $voterid, PDO::PARAM_STR, 12);
                         $sql2->execute();
                     }
                     $step = 3;
@@ -124,7 +130,7 @@
                             WHERE $voter_id = :voterid"
                         );
                         $sql3->bindParam(':citype', $citype, PDO::PARAM_STR, 128);
-                        $sql3->bindParam(':voterid', $voterid, PDO::PARAM_INT);
+                        $sql3->bindParam(':voterid', $voterid, PDO::PARAM_STR, 12);
                         $sql3->execute();
                     }
                     $step = 4;
@@ -145,7 +151,7 @@
                             WHERE $voter_id = :voterid"
                         );
                         $sql4->bindParam(':cidno', $cidno, PDO::PARAM_STR, 256);
-                        $sql4->bindParam(':voterid', $voterid, PDO::PARAM_INT);
+                        $sql4->bindParam(':voterid', $voterid, PDO::PARAM_STR, 12);
                         $sql4->execute();
                     }
                     $step = 5;
@@ -166,7 +172,7 @@
                             WHERE $voter_id = :voterid"
                         );
                         $sql5->bindParam(':cgender', $cgender, PDO::PARAM_STR, 256);
-                        $sql5->bindParam(':voterid', $voterid, PDO::PARAM_INT);
+                        $sql5->bindParam(':voterid', $voterid, PDO::PARAM_STR, 12);
                         $sql5->execute();
                     }
                     $step = 6;
@@ -186,7 +192,7 @@
                             SET $password = :cpd 
                             WHERE $voter_id = :voterid");
                         $sql6->bindParam(':cpd', $cpd1);
-                        $sql6->bindParam(':voterid', $voterid, PDO::PARAM_INT);
+                        $sql6->bindParam(':voterid', $voterid, PDO::PARAM_STR, 12);
                         $sql6->execute();
                     }
                     $step = 7;
