@@ -39,10 +39,6 @@
             <p1>
                 <table style="width: 100%;">
                     <tr>
-                        <td style="text-align: right;">Voter's Name: </td>
-                        <td><input type="text" name="cname" id="cname" required></td>
-                    </tr>
-                    <tr>
                         <td style="text-align: right;">
                         <abbr title="Type of ID Proof, default is passport"
                                 style="text-decoration: none;">
