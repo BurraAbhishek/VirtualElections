@@ -52,6 +52,13 @@
                 }
                 echo '<br>';
                 try {
+                    $t->createControlsTable();
+                    $c = $c + 1;
+                } catch(Exception $e) {
+                    echo 'Setup failed: Controls table was not created successfully.';
+                }
+                echo '<br>';
+                try {
                     $t->createVoterTable();
                     $c = $c + 1;
                 } catch(Exception $e) {
@@ -72,7 +79,7 @@
                     echo 'Setup failed: Voter table was not created successfully.';
                 }
                 echo '<br>';
-                if($c == 4) {
+                if($c == 5) {
                     $progresslevel = 3;
                 }
             }
