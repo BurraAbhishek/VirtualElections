@@ -1,5 +1,8 @@
 <?php
+    error_reporting(0);
+
     require_once '../db/config/dbconfig.php';
+    require_once '../db/config/idconfig.php';
 
     try {
         $conn = new Connection();
@@ -16,6 +19,8 @@
     session_start();
     $_SESSION['token'] = bin2hex(random_bytes(32));
     $token = $_SESSION['token'];
+    $id_proofs = new IDProof();
+    $ids_list = $id_proofs->get_options();
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +48,13 @@
                         <abbr title="Type of ID Proof, default is passport"
                                 style="text-decoration: none;">
                                 Identification type: </abbr></td>
-                        <td><input type="text" name="citype" 
-                        id="citype" value="Passport" required></td>
+                        <td>
+                            <select name="citype" id="citype">
+                            <?php
+                                echo $ids_list
+                            ?>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td style="text-align: right;">
