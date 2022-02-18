@@ -19,6 +19,7 @@
         error_reporting(0);
             
         require '../db/config/dbconfig.php';
+        require '../db/config/idconfig.php';
         require "../db/config/tablesconfig.php";
     
         try {
@@ -33,6 +34,8 @@
         $voter = $admin["voter"];
         $admin_id = $admin["id"];
         $id_default = $admin["id_default"];
+        $id_proofs = new IDProof();
+        $ids_list = $id_proofs->get_options();
 
         try {
             $sql = $conn->prepare("SELECT $voter FROM $admin_table WHERE $admin_id = :a");
@@ -98,24 +101,10 @@
                         </tr>
                         <tr>
                             <td style="text-align: right">
-                                <abbr
-                                    title="Type of ID Proof, default is passport"
-                                    style="text-decoration: none"
-                                    >Identification type:
-                                </abbr>
+                                Identification proof:
                             </td>
                             <td>
-                                <input
-                                    type="text"
-                                    name="citype"
-                                    id="citype"
-                                    value="Passport"
-                                    pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+"
-                                    title="Maximum 20 characters. 
-                                    The following characters are prohibited: 
-                                    !|@#$%^&*[]{}<>;?~:\/="
-                                    required
-                                />
+                                <select name="citype" id="citype">'.$ids_list.'</select>
                             </td>
                         </tr>
                         <tr>
