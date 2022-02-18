@@ -50,6 +50,55 @@
             }
         }
 
+        public function createControlsTable() {
+            try {
+                $conn1 = new Connection();
+                $c1 = $conn1->openConnection();
+                $t_global = new Table();
+                $t = $t_global->getControls();
+                $table = $t["table"];
+                $i = $t["id"];
+                $vl = $t["localize"];
+                $vp = $t["showprofile"];
+                $vt = $t["showviolations"];
+                $vv = $t["mustvote"];
+                $va = $t["voterage"];
+                $vab = $t["voteragemin"];
+                $vad = $t["voteragemax"];
+                $vc = $t["candidateage"];
+                $vcb = $t["candidateagemin"];
+                $vcd = $t["candidateagemax"];
+                $sqlCreate = $c1->prepare("CREATE TABLE `$table` (
+                    `$i` INT NOT NULL DEFAULT '0' ,
+                    `$vl` BOOLEAN NOT NULL DEFAULT TRUE , 
+                    `$vp` INT NOT NULL DEFAULT '1' , 
+                    `$vt` BOOLEAN NOT NULL DEFAULT TRUE , 
+                    `$vv` BOOLEAN NOT NULL DEFAULT FALSE , 
+                    `$va` BOOLEAN NOT NULL DEFAULT FALSE , 
+                    `$vab` INT NOT NULL DEFAULT '0' , 
+                    `$vad` INT NOT NULL DEFAULT '100' , 
+                    `$vc` BOOLEAN NOT NULL DEFAULT FALSE , 
+                    `$vcb` INT NOT NULL DEFAULT '0' , 
+                    `$vcd` INT NOT NULL DEFAULT '100'
+                );");
+                $sqlCreate->execute();
+                echo 'Controls table structure created.<br>';
+                $sqlAlter = $c1->prepare(
+                    "ALTER TABLE `$table` ADD PRIMARY KEY (`$i`);"
+                );
+                $sqlAlter->execute();
+                echo 'Controls table created.<br>';
+                $sqlInsert = $c1->prepare(
+                    "INSERT INTO `$table` (`$i`) 
+                    VALUES ('0')"
+                );
+                $sqlInsert->execute();
+                echo 'Controls table is ready.<br>';
+            } catch(Exception $e) {
+                echo 'The controls table either exists or is corrupted<br>';
+            }
+        }
+
         public function createVoterTable() {
             try {
                 $conn2 = new Connection();
@@ -65,7 +114,7 @@
                 $v = $t["idproof_value"];
                 $p = $t["password"];
                 $sqlCreate = $c2->prepare("CREATE TABLE `$table` (
-                    `$i` int(11) NOT NULL,
+                    `$i` varchar(12) NOT NULL,
                     `$n` varchar(256) NOT NULL,
                     `$g` varchar(128) NOT NULL,
                     `$d` varchar(256) NOT NULL,
@@ -78,9 +127,6 @@
                     ADD PRIMARY KEY (`$i`),
                     ADD UNIQUE KEY `$k` (`$k`,`$v`);");
                 $sqlAlter1->execute();
-                $sqlAlter2 = $c2->prepare("ALTER TABLE `$table` 
-                    MODIFY `$i` int(11) NOT NULL AUTO_INCREMENT;");
-                $sqlAlter2->execute();
                 echo 'The voter table is ready<br>';
             } catch(Exception $e) {
                 echo 'The voter table either exists or is corrupted<br>';
@@ -100,18 +146,19 @@
                 $v = $t["voter"];
                 $p = $t["party"];
                 $sqlCreate = $c3->prepare("CREATE TABLE `$table` (
-                    `$v` int(11) NOT NULL DEFAULT 0,
-                    `$p` int(11) NOT NULL DEFAULT 0
+                    `$v` varchar(256) NOT NULL,
+                    `$p` varchar(256) NOT NULL
                     );");
                 $sqlCreate->execute();
                 $sqlAlter1 = $c3->prepare("ALTER TABLE `$table` 
                     ADD PRIMARY KEY (`$v`);");
                 $sqlAlter1->execute();
+                /*
                 $sqlAlter2 = $c3->prepare("ALTER TABLE `$table` 
                     ADD CONSTRAINT `election_ibfk_1` 
                     FOREIGN KEY (`$v`) 
                     REFERENCES `$votername` (`$voterid`);");
-                $sqlAlter2->execute();
+                $sqlAlter2->execute();*/
                 echo 'Votes table structure created<br>';                
             } catch(Exception $e) {
                 echo 'The votes structure either exists or is corrupted<br>';
@@ -132,7 +179,7 @@
                 $d = $t["idproof_type"];
                 $v = $t["idproof_value"];
                 $sqlCreate = $c4->prepare("CREATE TABLE `$table` (
-                    `$i` int(11) NOT NULL,
+                    `$i` varchar(8) NOT NULL,
                     `$n` varchar(512) NOT NULL,
                     `$c` varchar(512) NOT NULL,
                     `$d` varchar(256) NOT NULL,
@@ -146,9 +193,6 @@
                     ADD UNIQUE KEY `$d` (`$d`,`$v`)
                     ;");
                 $sqlAlter1->execute();
-                $sqlAlter2 = $c4->prepare("ALTER TABLE `$table` 
-                    MODIFY `$i` int(11) NOT NULL AUTO_INCREMENT;");
-                $sqlAlter2->execute();
                 echo 'Contestant table ready<br>';
             } catch(Exception $e) {
                 echo 'The contestant table either exists or is corrupted<br>';
