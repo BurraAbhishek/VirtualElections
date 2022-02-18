@@ -306,13 +306,17 @@
             "Other"
         );
         private $allow_local = true;
-        public function get_options() {
+        public function get_options($selected="") {
             $s = "";
             if ($this->allow_local) {
                 foreach ($this->local as $value) {
                     $s .= "<option value='";
                     $s .= "$value";
-                    $s .= "'>";
+                    if ($selected == $value) {
+                        $s .= "'selected>";
+                    } else {
+                        $s .= "'>";
+                    }
                     $s .= "$value";
                     $s .= "</option>";
                 }
@@ -320,14 +324,22 @@
             foreach ($this->general as $value) {
                 $s .= "<option value='";
                 $s .= "$value";
-                $s .= "'>";
+                if ($selected == $value) {
+                    $s .= "'selected>";
+                } else {
+                    $s .= "'>";
+                }
                 $s .= "$value";
                 $s .= "</option>";
             }
             foreach ($this->other as $value) {
                 $s .= "<option value='";
                 $s .= "$value";
-                $s .= "'>";
+                if ($selected == $value) {
+                    $s .= "'selected>";
+                } else {
+                    $s .= "'>";
+                }
                 $s .= "$value";
                 $s .= "</option>";
             }
