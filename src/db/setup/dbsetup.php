@@ -76,7 +76,7 @@
                     $t->createPartyTable();
                     $c = $c + 1;
                 } catch(Exception $e) {
-                    echo 'Setup failed: Voter table was not created successfully.';
+                    echo 'Setup failed: Contestant table was not created successfully.';
                 }
                 echo '<br>';
                 if($c == 5) {
