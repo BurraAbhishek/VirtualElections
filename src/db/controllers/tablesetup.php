@@ -1,6 +1,7 @@
 <?php
     require_once '../config/dbconfig.php';
     require_once '../config/tablesconfig.php';
+    require_once '../controllers/ssl.php';
 
     class TableSetup
     {
@@ -88,10 +89,18 @@
                 );
                 $sqlAlter->execute();
                 echo 'Controls table created.<br>';
+                $true = true;
+                $false = false;
                 $sqlInsert = $c1->prepare(
-                    "INSERT INTO `$table` (`$i`) 
-                    VALUES ('0')"
+                    "INSERT INTO `$table` 
+                    (`$i`,`$vl`,`$vp`,`$vt`,`$vv`,`$va`,`$vab`,`$vad`,`$vc`,`$vcb`,`$vcd`) 
+                    VALUES ('0',:vl,'1',:vt,:vv,:va,'0','100',:vc,'0','100')"
                 );
+                $sqlInsert->bindParam(':vl', $true, PDO::PARAM_BOOL);
+                $sqlInsert->bindParam(':vt', $true, PDO::PARAM_BOOL);
+                $sqlInsert->bindParam(':vv', $false, PDO::PARAM_BOOL);
+                $sqlInsert->bindParam(':va', $false, PDO::PARAM_BOOL);
+                $sqlInsert->bindParam(':vc', $false, PDO::PARAM_BOOL);
                 $sqlInsert->execute();
                 echo 'Controls table is ready.<br>';
             } catch(Exception $e) {
@@ -153,12 +162,6 @@
                 $sqlAlter1 = $c3->prepare("ALTER TABLE `$table` 
                     ADD PRIMARY KEY (`$v`);");
                 $sqlAlter1->execute();
-                /*
-                $sqlAlter2 = $c3->prepare("ALTER TABLE `$table` 
-                    ADD CONSTRAINT `election_ibfk_1` 
-                    FOREIGN KEY (`$v`) 
-                    REFERENCES `$votername` (`$voterid`);");
-                $sqlAlter2->execute();*/
                 echo 'Votes table structure created<br>';                
             } catch(Exception $e) {
                 echo 'The votes structure either exists or is corrupted<br>';
@@ -172,6 +175,10 @@
                 $c4 = $conn4->openConnection();
                 $t_global = new Table();
                 $t = $t_global->getPartyList();
+                $crypto = new SecureData();
+                $nota_id = "00000000";
+                $nota_name = $crypto->encrypt("None Of The Above");
+                $nota_iid = $crypto->encrypt("00000000");
                 $table = $t["table"];
                 $i = $t["id"];
                 $n = $t["party_name"];
@@ -193,6 +200,17 @@
                     ADD UNIQUE KEY `$d` (`$d`,`$v`)
                     ;");
                 $sqlAlter1->execute();
+                echo 'Contestant table created<br>';
+                $sqlInsert = $c4->prepare(
+                    "INSERT INTO `$table` (`$i`, `$n`, `$c`, `$d`, `$v`) 
+                    VALUES (:i, :n, :c, :d, :v)"
+                );
+                $sqlInsert->bindParam(':i', $nota_id, PDO::PARAM_STR, 8);
+                $sqlInsert->bindParam(':n', $nota_name, PDO::PARAM_STR);
+                $sqlInsert->bindParam(':c', $nota_name, PDO::PARAM_STR);
+                $sqlInsert->bindParam(':d', $nota_name, PDO::PARAM_STR);
+                $sqlInsert->bindParam(':v', $nota_iid, PDO::PARAM_STR);
+                $sqlInsert->execute();
                 echo 'Contestant table ready<br>';
             } catch(Exception $e) {
                 echo 'The contestant table either exists or is corrupted<br>';
