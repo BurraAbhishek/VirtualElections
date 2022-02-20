@@ -29,7 +29,7 @@
     $conn = $dbconn->openConnection();
 
 	try {
-		$voter_id = $_SESSION["voterid"];
+		$voter_id = $show->encrypt($_SESSION["voterid"]);
 		$sql = $conn->prepare(
 			"SELECT * FROM $votescast WHERE $voterid = :voter_id"
 		);
@@ -49,7 +49,8 @@
 				);
 				array_push($a,$b);
 			}
-			$c = json_encode($a);
+			$a_reverse = array_reverse($a);
+			$c = json_encode($a_reverse);
 			$v = $_SESSION["votername"];
 			echo '<script>sessionStorage.setItem("parties",JSON.stringify(';
 			echo "$c";
