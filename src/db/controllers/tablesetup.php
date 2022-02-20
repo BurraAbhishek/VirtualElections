@@ -168,6 +168,28 @@
             }
         }
 
+        public function createResultList() {
+            try {
+                $conn3 = new Connection();
+                $c3 = $conn3->openConnection();
+                $t_global = new Table();
+                $t = $t_global->getResults();
+                $table = $t["table"];
+                $i = $t["party"];
+                $r = $t["count"];
+                $sqlCreate = $c3->prepare("CREATE TABLE `$table` (
+                    `$i` varchar(256) NOT NULL,
+                    `$r` bigint NOT NULL
+                    );");
+                $sqlCreate->execute();
+                $sqlAlter1 = $c3->prepare("ALTER TABLE `$table` 
+                    ADD PRIMARY KEY (`$i`);");
+                $sqlAlter1->execute();
+                echo 'Results table structure created<br>';                
+            } catch(Exception $e) {
+                echo 'The results table structure either exists or is corrupted<br>';
+            }
+        }
 
         public function createPartyTable() {
             try {
@@ -214,6 +236,52 @@
                 echo 'Contestant table ready<br>';
             } catch(Exception $e) {
                 echo 'The contestant table either exists or is corrupted<br>';
+            }
+        }
+
+        public function createGenderTurnoutTable() {
+            try {
+                $conn4 = new Connection();
+                $c4 = $conn4->openConnection();
+                $t_global = new Table();
+                $t = $t_global->getGenderTurnout();
+                $table = $t["table"];
+                $i = $t["id"];
+                $m = $t["male"];
+                $f = $t["female"];
+                $o = $t["other"];
+                $g = $t["total"];
+                $sqlCreate = $c4->prepare("CREATE TABLE `$table` (
+                    `$i` varchar(128) NOT NULL,
+                    `$m` bigint NOT NULL,
+                    `$f` bigint NOT NULL,
+                    `$o` bigint NOT NULL,
+                    `$g` bigint NOT NULL
+                );");
+                $sqlCreate->execute();
+                echo 'Gender Turnout structure created<br>';
+                $sqlAlter1 = $c4->prepare("ALTER TABLE `$table` 
+                    ADD PRIMARY KEY (`$i`)
+                    ;");
+                $sqlAlter1->execute();
+                echo 'Gender Turnout table created<br>';
+                $sqlInsert1 = $c4->prepare(
+                    "INSERT INTO `$table` (`$i`, `$m`, `$f`, `$o`, `$g`) 
+                    VALUES (:i, '0', '0', '0', '0')"
+                );
+                $gender_all = 'gender_all';
+                $sqlInsert1->bindParam(':i', $gender_all, PDO::PARAM_STR);
+                $sqlInsert1->execute();
+                $sqlInsert2 = $c4->prepare(
+                    "INSERT INTO `$table` (`$i`, `$m`, `$f`, `$o`, `$g`) 
+                    VALUES (:i, '0', '0', '0', '0')"
+                );
+                $gender_composition = 'gender_composition';
+                $sqlInsert2->bindParam(':i', $gender_composition, PDO::PARAM_STR);
+                $sqlInsert2->execute();
+                echo 'Gender Turnout table ready<br>';
+            } catch(Exception $e) {
+                echo 'The Gender Turnout table either exists or is corrupted<br>';
             }
         }
     }
