@@ -47,7 +47,6 @@
                 action="controllers/voter_register.php"
                 name="rForm"
                 method="post"
-                onsubmit="javascript:return validateForm();"
             >
                 <p1>
                     <table style="width: 100%">
