@@ -46,6 +46,11 @@
             "voter" => "voter_id",
             "party" => "party_id"
         );
+        private $resultAttributes = array(
+            "table" => "result",
+            "party" => "id",
+            "count" => "value"
+        );
         private $partyAttributes = array(
             "table" => "parties",
             "id" => "party_id",
@@ -64,6 +69,14 @@
             "idproof_value" => "idno",
             "password" => "password"
         );
+        private $genderTurnoutAttributes = array(
+            "table" => "turnout",
+            "id" => "type",
+            "male" => "male",
+            "female" => "female",
+            "other" => "other",
+            "total" => "total"
+        );
         public function getAdminStatus() {
             return $this->adminAttributes;
         }
@@ -78,6 +91,12 @@
         }
         public function getVotes() {
             return $this->electionAttributes;
-        }                        
+        }
+        public function getGenderTurnout() {
+            return $this->genderTurnoutAttributes;
+        }
+        public function getResults() {
+            return $this->resultAttributes;
+        }
     }
 ?>
