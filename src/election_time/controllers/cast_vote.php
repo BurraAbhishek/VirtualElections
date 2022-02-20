@@ -32,7 +32,7 @@
 				);
 				$sql->execute([':voted_for' => $voted_for]);
 				$result = $sql->fetchAll();
-				$v = 0;
+				$v = "00000000";
 				foreach($result as $s){
 					$v = $s["party_id"];
 				}
@@ -40,8 +40,8 @@
 					"INSERT INTO $votes ($voter_id, $party_id) 
 					values (:voter_id, :v)"
 				);
-				$stmt->bindParam(':voter_id', $voterid, PDO::PARAM_INT);
-				$stmt->bindParam(':v', $v, PDO::PARAM_INT);
+				$stmt->bindParam(':voter_id', $send->encrypt($voterid), PDO::PARAM_STR);
+				$stmt->bindParam(':v', $send->encrypt($v), PDO::PARAM_STR);
 				if($stmt->execute()){
 					session_destroy();
 					setcookie("PHPSESSID", "", time() - 86400);
