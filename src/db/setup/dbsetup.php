@@ -78,8 +78,22 @@
                 } catch(Exception $e) {
                     echo 'Setup failed: Contestant table was not created successfully.';
                 }
+                echo '<br>'; 
+                try {  
+                    $t->createGenderTurnoutTable();
+                    $c = $c + 1;
+                } catch(Exception $e) {
+                    echo 'Setup failed: Gender Turnout table was not created successfully.';
+                }
                 echo '<br>';
-                if($c == 5) {
+                try {  
+                    $t->createResultList();
+                    $c = $c + 1;
+                } catch(Exception $e) {
+                    echo 'Setup failed: Results table was not created successfully.';
+                }
+                echo '<br>';
+                if($c == 7) {
                     $progresslevel = 3;
                 }
             }
