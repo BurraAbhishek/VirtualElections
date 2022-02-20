@@ -89,7 +89,6 @@
                     document.getElementById(b).appendChild(x);
                 }
 
-                s.push(["None Of The Above", "None Of The Above"]);
                 create_tr("ig1", "table1");
                 create_th("Party", "ig1");
                 create_th("Candidate", "ig1");
