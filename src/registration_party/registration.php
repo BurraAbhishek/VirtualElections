@@ -18,6 +18,7 @@
         error_reporting(0);
 
         require '../db/config/dbconfig.php';
+        require '../db/config/idconfig.php';
         require '../db/config/tablesconfig.php';
 
         try {
@@ -33,6 +34,8 @@
         $party = $admin["party"];
         $admin_id = $admin["id"];
         $id_default = $admin["id_default"];
+        $id_proofs = new IDProof();
+        $ids_list = $id_proofs->get_options();
 
         try {         
             $sql = $conn->prepare(
@@ -83,27 +86,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="text-align: right">
-                                <abbr
-                                    title="Type of ID Proof, default is passport"
-                                    style="text-decoration: none"
-                                    >Identification type:
-                                </abbr>
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="citype"
-                                    id="citype"
-                                    value="Passport"
-                                    pattern="[^/<>;:@#&%=[\]{\}\\\*\$!\?\/\|]+"
-                                    title="Maximum 20 characters. 
-                                    The following characters are prohibited: 
-                                    !|@#$%^&*[]{}<>;?~:\/="
-                                    required
-                                />
-                            </td>
-                        </tr>
+                        <td style="text-align: right">
+                            Identification proof:
+                        </td>
+                        <td>
+                            <select name="citype" id="citype">'.$ids_list.'</select>
+                        </td>
+                    </tr>
                         <tr>
                             <td style="text-align: right">
                                 Passport / ID Number of Candidate:
