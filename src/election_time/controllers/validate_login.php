@@ -1,5 +1,6 @@
 <?php
-	//error_reporting(0);
+	error_reporting(0);
+
 	session_start();
 	echo $_SESSION['token'];
 ?>
@@ -36,7 +37,7 @@
 						WHERE $idproof = :citype 
 						AND $idno = :cidno"
 					);
-					$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 128);
+					$sql->bindParam(':citype', $citype, PDO::PARAM_STR, 256);
 					$sql->bindParam(':cidno', $cidno, PDO::PARAM_STR, 256);
 					$sql->execute();
 					$userid = $sql->fetchAll();
