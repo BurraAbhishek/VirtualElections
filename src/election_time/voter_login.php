@@ -19,6 +19,7 @@
             
         require '../db/config/dbconfig.php';
         require '../db/config/tablesconfig.php';
+        require_once '../db/config/idconfig.php';
 
         try {
             $dbconn = new Connection();
@@ -41,6 +42,8 @@
         $votecasting = $admin["votecast"];
         $admin_id = $admin["id"];
         $id_default = $admin["id_default"];
+        $id_proofs = new IDProof();
+        $ids_list = $id_proofs->get_options();
 
         try {
             $sql1 = $conn->prepare(
@@ -58,33 +61,10 @@
                     <table style="width: 100%">
                         <tr>
                             <td style="text-align: right">
-                                Voter\'s Name:
+                                Identification proof:
                             </td>
                             <td>
-                                <input
-                                    type="text"
-                                    name="cname"
-                                    id="cname"
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right">
-                                <abbr
-                                    title="Type of ID Proof, default is passport"
-                                    style="text-decoration: none"
-                                    >Identification type:
-                                </abbr>
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="citype"
-                                    id="citype"
-                                    value="Passport"
-                                    required
-                                />
+                                <select name="citype" id="citype">'.$ids_list.'</select>
                             </td>
                         </tr>
                         <tr>
